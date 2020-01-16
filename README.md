@@ -1,3 +1,12 @@
+# React.JS - Сервис заказа такси
+Дата прохождения курса 13.01.2020 - 22.02.2020 
+
+**Студент:** Прокопенко Сергей
+
+**Наставник:** Вячеслав Андреев
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
