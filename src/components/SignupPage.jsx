@@ -1,26 +1,46 @@
 import React from 'react';
 
-const Signup = () => {
-    return (
+class Signup extends React.Component {
+        state = {userName: '', password: ''};
+
+handleSubmit = event => {
+    event.preventDefault();
         
-        <form action="">
+}
+handleUserNameChange = event => {
+    this.setState({userName: event.target.value});
+}
+
+handlePasswordChange = event => {
+    this.setState({password: event.target.value});
+}
+
+render() {
+    const {userName, password} = this.state;
+    return (
+        <form onSubmit = {this.handleSubmit}>
         <h1>Signup</h1>
-            <input
+        <input
                 type="text"
                 name="username"
                 className=""
                 placeholder="Имя пользователя"
+                value = {userName}
+                onChange = {this.handleUserNameChange}
             />
             <input
                 type="password"
                 name="password"
                 className=""
                 placeholder="Пароль"
+                value = {password}
+                onChange = {this.handlePasswordChange}
             />
 
-            <button type="submit" className="">Зарегистрироваться</button>
+            <input type="submit" className="" value="Зарегистрироваться"/>
         </form>
-    );
+        );
+    }
 }
 
 export default Signup;
