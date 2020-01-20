@@ -1,11 +1,10 @@
 import React from 'react';
 
 class Signup extends React.Component {
-        state = {userName: '', password: ''};
+    state = {userName: '', password: ''};
 
 handleSubmit = event => {
     event.preventDefault();
-        
 }
 handleUserNameChange = event => {
     this.setState({userName: event.target.value});
