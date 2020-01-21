@@ -5,6 +5,7 @@ class Signup extends React.Component {
 
 handleSubmit = event => {
     event.preventDefault();
+    this.props.changePage('map');
 }
 handleUserNameChange = event => {
     this.setState({userName: event.target.value});
@@ -36,7 +37,7 @@ render() {
                 onChange = {this.handlePasswordChange}
             />
 
-            <input type="submit" className="" value="Зарегистрироваться"/>
+            <input type="submit" className="" value="Зарегистрироваться" />
         </form>
         );
     }

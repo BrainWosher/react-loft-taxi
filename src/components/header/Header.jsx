@@ -11,11 +11,11 @@ class Header extends PureComponent {
       const { changePage, routes, activePage } = this.props;
       return (
         <div>
-          {routes.map(page => 
-            <Navigation 
-              key={page} 
-              page = {page} 
-              changePage={changePage} 
+          {routes.map(page =>
+            <Navigation
+              key={page}
+              page = {page}
+              changePage={changePage}
               activePage = {activePage}
             />
             )

@@ -36,7 +36,7 @@ class Main extends Component {
         <div className="App">
             <div>
                 <Header changePage = {this.changePage} routes= {routes} activePage = {active} />
-                <C/>
+                <C changePage = {this.changePage}/>
             </div>
         </div>
     );

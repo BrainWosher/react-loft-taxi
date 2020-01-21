@@ -6,7 +6,7 @@ class Login extends React.Component {
 
 handleSubmit = event => {
     event.preventDefault();
-
+    this.props.changePage('map');
 }
 
 handleUserNameChange = event => {
