@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import css from './style.module.css';
+import Button from '@material-ui/core/Button';
 
 class Navigation extends PureComponent {
     handleClick = () =>{
@@ -15,9 +16,9 @@ class Navigation extends PureComponent {
 render() {
     const { page } = this.props;
     return(
-        <button onClick= {this.handleClick} className={this.getActiveStyle()}>
+        <Button onClick= {this.handleClick} className={this.getActiveStyle()}>
             { page }
-        </button>
+        </Button>
         );
     }
 }

@@ -1,5 +1,18 @@
 import React from 'react';
+import { Input, Button, FormGroup, styled } from '@material-ui/core';
 
+const FormGroupStyled = styled(FormGroup)({
+    maxWidth: '502px',
+    padding: '52px 64px 59px 63px',
+    borderRadius: '3px'
+});
+
+const ButtonStyled = styled(Button)({
+    borderRadius: '4px',
+    backgroundColor: '#ffc617',
+    fontSize: '21px',
+    fontWeight: 400
+});
 
 class Login extends React.Component {
     state = {userName: '', password: ''};
@@ -19,27 +32,24 @@ handlePasswordChange = event => {
 render() {
     const {userName, password} = this.state;
     return (
-        <form onSubmit = {this.handleSubmit} >
-        <h1>Login</h1>
-            <input
-                type="text"
-                name="username"
-                className=""
-                placeholder="Имя пользователя"
-                value = {userName}
-                onChange = {this.handleUserNameChange}
-            />
-            <input
-                type="password"
-                name="password"
-                className=""
-                placeholder="Пароль"
-                value = {password}
-                onChange = {this.handlePasswordChange}
-            />
-
-            <input type="submit" className="" value="Войти"/>
-        </form>
+        <FormGroupStyled onSubmit = {this.handleSubmit} position={"absolute"}>
+            <h1>Login</h1>
+                <Input
+                    type="text"
+                    name="username"
+                    placeholder="Имя пользователя*"
+                    value = {userName}
+                    onChange = {this.handleUserNameChange}
+                />
+                <Input
+                    type="password"
+                    name="password"
+                    placeholder="Пароль*"
+                    value = {password}
+                    onChange = {this.handlePasswordChange}
+                />
+                <ButtonStyled type="submit">Войти</ButtonStyled>
+        </FormGroupStyled>
         );
     }
 }

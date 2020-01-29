@@ -6,6 +6,7 @@ import Map from './../components/pages/Map';
 import Profile from './../components/pages/Profile';
 import Signup from './../components/pages/Signup';
 import {routes} from './../helpers/routes';
+import { Container } from '@material-ui/core';
 
 const getComponents = {
   profile: Profile,
@@ -33,10 +34,12 @@ class Main extends Component {
     const C = getComponents[active] || Login;
 
     return (
-        <div className="App">
+        <div>
             <div>
                 <Header changePage = {this.changePage} routes= {routes} activePage = {active} />
-                <C changePage = {this.changePage}/>
+                <Container>
+                    <C changePage = {this.changePage}/>
+                </Container>
             </div>
         </div>
     );
