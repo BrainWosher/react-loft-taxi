@@ -32,59 +32,61 @@ handlePasswordChange = event => {
     render() {
         const {userName, password} = this.state;
         return (
-            <FormGroupStyled onSubmit = {this.handleSubmit}>
-            <Typography align="center"><h1>Profile</h1></Typography >
-            <Typography align="center"><p>Способ оплаты</p></Typography >
-                <FormGroup>
-                    <FormControl>
-                        <FormLabel>Номер карты:</FormLabel>
-                        <Input
-                            type="text"
-                            name="username"
-                            className=""
-                            placeholder="Имя пользователя"
-                            value = {userName}
-                            onChange = {this.handleUserNameChange}
-                        />
-                    </FormControl>
-                    <FormControl>
-                        <FormLabel>Срок действия:</FormLabel>
-                        <Input
-                            type="password"
-                            name="password"
-                            className=""
-                            placeholder="Пароль"
-                            value = {password}
-                            onChange = {this.handlePasswordChange}
-                        />
-                    </FormControl>
-                </FormGroup>
-                <FormGroup>
-                    <FormControl>
-                        <FormLabel>Имя владельца:</FormLabel>
-                        <Input
-                            type="text"
-                            name="username"
-                            className=""
-                            placeholder="Имя пользователя"
-                            value = {userName}
-                            onChange = {this.handleUserNameChange}
-                        />
-                    </FormControl>
-                    <FormControl>
-                        <FormLabel>CVC:</FormLabel>
-                        <Input
-                            type="password"
-                            name="password"
-                            className=""
-                            placeholder="Пароль"
-                            value = {password}
-                            onChange = {this.handlePasswordChange}
-                        />
-                    </FormControl>
-                </FormGroup>
-                <ButtonStyled type="submit">Сохранить</ButtonStyled>
-            </FormGroupStyled>
+            <div>
+                <FormGroupStyled onSubmit = {this.handleSubmit}>
+                <Typography align="center" className=".MuiTypography-h1">Profile</Typography >
+                <Typography align="center" className=".MuiTypography-h2">Способ оплаты</Typography >
+                    <FormGroup>
+                        <FormControl>
+                            <FormLabel>Номер карты:</FormLabel>
+                            <Input
+                                type="text"
+                                name="username"
+                                className=""
+                                placeholder="Имя пользователя"
+                                value = {userName}
+                                onChange = {this.handleUserNameChange}
+                            />
+                        </FormControl>
+                        <FormControl>
+                            <FormLabel>Срок действия:</FormLabel>
+                            <Input
+                                type="password"
+                                name="password"
+                                className=""
+                                placeholder="Пароль"
+                                value = {password}
+                                onChange = {this.handlePasswordChange}
+                            />
+                        </FormControl>
+                    </FormGroup>
+                    <FormGroup>
+                        <FormControl>
+                            <FormLabel>Имя владельца:</FormLabel>
+                            <Input
+                                type="text"
+                                name="username"
+                                className=""
+                                placeholder="Имя пользователя"
+                                value = {userName}
+                                onChange = {this.handleUserNameChange}
+                            />
+                        </FormControl>
+                        <FormControl>
+                            <FormLabel>CVC:</FormLabel>
+                            <Input
+                                type="password"
+                                name="password"
+                                className=""
+                                placeholder="Пароль"
+                                value = {password}
+                                onChange = {this.handlePasswordChange}
+                            />
+                        </FormControl>
+                    </FormGroup>
+                    <ButtonStyled type="submit">Сохранить</ButtonStyled>
+                </FormGroupStyled>
+            </div>
         );
     }
 }
