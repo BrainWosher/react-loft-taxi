@@ -1,11 +1,6 @@
 import React from 'react';
-import { Input, Button, FormGroup, styled } from '@material-ui/core';
+import { Input, Button, styled } from '@material-ui/core';
 
-const FormGroupStyled = styled(FormGroup)({
-    maxWidth: '502px',
-    padding: '52px 64px 59px 63px',
-    borderRadius: '3px'
-});
 
 const ButtonStyled = styled(Button)({
     borderRadius: '4px',
@@ -32,7 +27,7 @@ handlePasswordChange = event => {
 render() {
     const {userName, password} = this.state;
     return (
-        <FormGroupStyled onSubmit = {this.handleSubmit} position={"absolute"}>
+        <form onSubmit = {this.handleSubmit}>
             <h1>Login</h1>
                 <Input
                     type="text"
@@ -49,7 +44,7 @@ render() {
                     onChange = {this.handlePasswordChange}
                 />
                 <ButtonStyled type="submit">Войти</ButtonStyled>
-        </FormGroupStyled>
+        </form>
         );
     }
 }
