@@ -13,12 +13,12 @@ class Navigation extends PureComponent {
         }
         return '';
     }
-render() {
-    const { page } = this.props;
-    return(
-        <Button onClick= {this.handleClick} className={this.getActiveStyle()}>
-            { page }
-        </Button>
+    render() {
+        const { page } = this.props;
+        return(
+            <Button onClick= {this.handleClick} className={this.getActiveStyle()}>
+                { page }
+            </Button>
         );
     }
 }

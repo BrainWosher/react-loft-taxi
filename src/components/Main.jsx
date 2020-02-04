@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import './../App.css';
 import Header from './header/Header';
-import Login from './../components/pages/Login';
+import Login from './pages/login/Login';
 import Map from './../components/pages/Map';
-import Profile from './../components/pages/Profile';
+import Profile from './pages/profile/Profile';
 import Signup from './../components/pages/Signup';
 import {routes} from './../helpers/routes';
 
