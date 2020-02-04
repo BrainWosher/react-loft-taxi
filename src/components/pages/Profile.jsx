@@ -84,7 +84,7 @@ class Profile extends React.Component {
                                                         <span></span>
                                                         <FormControlStyled className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth">
                                                             <FormLabel className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink Mui-required Mui-required">
-                                                                Номер карты
+                                                                Номер карты:
                                                             </FormLabel>
                                                             <Input
                                                                 type="text"
@@ -101,7 +101,7 @@ class Profile extends React.Component {
                                                         </FormControlStyled>
                                                         <FormControl className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth" format="MM/yy">
                                                             <FormLabel className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink Mui-required Mui-required">
-                                                                Срок действия
+                                                                Срок действия:
                                                             </FormLabel>
                                                             <Input
                                                                 type="text"
@@ -122,7 +122,7 @@ class Profile extends React.Component {
                                                     <Box className="MuiBox-root">
                                                         <FormControlStyled className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth">
                                                             <FormLabel className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink Mui-required Mui-required">
-                                                                Имя владельца
+                                                                Имя владельца:
                                                             </FormLabel>
                                                             <Input
                                                                 type="text"
@@ -138,7 +138,7 @@ class Profile extends React.Component {
                                                         </FormControlStyled>
                                                         <FormControl className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth">
                                                             <FormLabel className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink Mui-required Mui-required">
-                                                                CVC
+                                                                CVC:
                                                             </FormLabel>
                                                             <Input
                                                                 type="text"

@@ -8,8 +8,8 @@ class Map extends React.Component {
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/light-v8',
-        center: [-74.0066, 40.7135], // starting position [lng, lat]
-        zoom: 15 // starting zoom
+        center: [83.758, 53.3354], 
+        zoom: 11 
     });
   }
 

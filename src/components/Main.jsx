@@ -6,7 +6,6 @@ import Map from './../components/pages/Map';
 import Profile from './../components/pages/Profile';
 import Signup from './../components/pages/Signup';
 import {routes} from './../helpers/routes';
-import { Container } from '@material-ui/core';
 
 const getComponents = {
   profile: Profile,
@@ -21,13 +20,20 @@ class Main extends Component {
         pages: {
             list: [],
             active: null
-        }
+        },
+        isLoggedIn: false
     }
 
     changePage = (pageId) => {
         this.setState({active: pageId});
     }
 
+    changeLoggedStatus= () => {
+        this.setState(state => {
+            return !state.isLoggedIn;
+        })
+    }
+    
     render() {
     
     const { active } = this.state;
@@ -36,7 +42,7 @@ class Main extends Component {
     return (
         <div>
             <div>
-                <Header changePage = {this.changePage} routes= {routes} activePage = {active} />
+                <Header changePage = {this.changePage} routes= {routes} activePage = {active}  authorizationStatus = {this.changeLoggedStatus}/>
                     <C changePage = {this.changePage}/>
             </div>
         </div>
