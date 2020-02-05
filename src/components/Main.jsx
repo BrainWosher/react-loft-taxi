@@ -4,7 +4,7 @@ import Header from './header/Header';
 import Login from './pages/login/Login';
 import Map from './../components/pages/Map';
 import Profile from './pages/profile/Profile';
-import Signup from './../components/pages/Signup';
+import Signup from './../components/pages/signup/Signup';
 import {routes} from './../helpers/routes';
 
 const getComponents = {
