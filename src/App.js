@@ -4,8 +4,8 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App" position={"relative"}>
-      <Main />
+    <div className="App">
+        <Main />
     </div>
   );
 }

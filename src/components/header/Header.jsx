@@ -1,7 +1,5 @@
 import React, {PureComponent} from 'react';
-import { styled } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+import {AppBar, Button, Toolbar, styled} from '@material-ui/core';
 import {Logo} from 'loft-taxi-mui-theme';
 import Navigation from '../navigation/Navigation';
 
@@ -21,30 +19,42 @@ class Header extends PureComponent {
     changePage: () => {},
     routes: []
   }
-    render() {
-      const { changePage, routes, activePage } = this.props;
-      return (
-        <div>
-          <AppBarStyled position={"static"}>
-            <ToolbarStyled>
-              <Logo display="flex" justifyContent="flex-start" />
-              <div>
-                {routes.map(page =>
-                  <Navigation
-                    key={page}
-                    page = {page}
-                    changePage={changePage}
-                    activePage = {activePage}
-                    display="flex"
-                    justifyContent="flex-end"
-                  />
-                )}
-              </div>
-            </ToolbarStyled>
-          </AppBarStyled>
-        </div>
-      );
-    }
+
+  logout = () => {
+    const { changePage, logout }= this.props;
+    changePage('login');
+    logout();
   }
+
+  render() {
+    const { changePage, routes, activePage, isLoggedIn, email } = this.props;
+    if (!isLoggedIn) return null;
+
+    return (
+      <div>
+        <AppBarStyled position={"static"}>
+          <ToolbarStyled>
+            <Logo display="flex" justifyContent="flex-start" />
+            <div>
+              {routes.filter(page => !['signup','login'].includes(page)).map(page =>
+                <Navigation
+                  key={page}
+                  page = {page}
+                  changePage={changePage}
+                  activePage = {activePage}
+                  display="flex"
+                  justifyContent="flex-end"
+                />
+              )}
+              <Button onClick={this.logout}>
+                Logout
+              </Button>
+            </div>
+          </ToolbarStyled>              
+        </AppBarStyled>
+      </div>
+    );
+  }
+}
 
 export default Header;

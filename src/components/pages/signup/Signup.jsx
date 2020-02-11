@@ -1,149 +1,138 @@
-import React from 'react';
+import React, { useCallback, useContext,useMemo, useState } from 'react';
 import { Paper, Grid, Input, Button, FormControl, FormLabel, Link, Typography, styled } from '@material-ui/core';
+import SignupContent from './SignupContent';
+import LoginContent from '../login/LoginContent';
+import {AuthConsumer, authHOC } from '../../../Context/context';
 import css from './style.module.css';
+import logo from '../../../asstets/logo.png';
 
 const GridWrapperStyled = styled(Grid)({
     minHeight:'92vh'
 });
 
-const TypographyStyled = styled(Typography)({
-    marginBottom: '30px'
+const FullContainer = styled(Paper)({
+    height: '100vh',
+    padding: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
 });
 
-const GridGapStyled = styled(Grid)({
-    padding: '54px 35px 59px 65px',
-    marginTop: '48px',
-    marginBottom: '48px'
-});
-const GridPaddingLeftStyled = styled(Grid)({
-    paddingLeft: '8px'
-});
-const GridPaddingRightStyled = styled(Grid)({
-    paddingRight: '8px'
-});
+const SignupLayout = ({
+    changePage
+}) => {
+    const [userName, setUsername] = useState('');
+    const [userSurname, setUserSurname] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [errorPassword, setErrorPassword] = useState('');
 
-const FormControlStyled = styled(FormControl)({
-    marginBottom:'32px'
-});
-
-const ButtonStyled = styled(Button)({
-    padding: '9px 50px',
-    borderRadius: '4px',
-    backgroundColor: '#ffc617',
-    fontSize: '21px',
-    fontWeight: 400,
-    marginTop: '40px'
-});
-
-class Signup extends React.Component {
-    state = {userName: '', password: '', userSurname: '', email: ''};
-
-    getBgStyle = () => {
+    const [active, toggle] = useState(false);
+    const {login} = useContext(AuthConsumer);
+    const getBgStyle = useMemo(() => {
         return css.main__bg;
-    }
+    }, [])
 
-    handleSubmit = event => {
-        event.preventDefault();
-        this.props.changePage('map');
-        // this.props.changeLoggedStatus();
-    }
-    handleUserNameChange = event => {
-        this.setState({userName: event.target.value});
-    }
+    const preventDefault = event => event.preventDefault();
+    const handleSubmit = useCallback((e) => {
+        e.preventDefault();
+        const result = login({email: userName, password});
+        if (!result) {
+            changePage('map')
+        } else {
+            setErrorPassword(result.error)
+        }
 
-    handlePasswordChange = event => {
-        this.setState({password: event.target.value});
-    }
+    }, [userName, password])
 
-    handleUserSurnameChange = event => {
-        this.setState({userSurname: event.target.value});
-    }
+    const handleUserNameChange = useCallback((e) => {
+        setUsername(e.target.value);
+    }, [])
 
-    handleEmailChange = event => {
-        this.setState({email: event.target.value});
-    }
+    const handleUserSurnameChange = useCallback((e) => {
+        setUserSurname(e.target.value);
+    }, [])
 
-    render() {
-        const {userName, password, userSurname, email } = this.state;
-        const preventDefault = event => event.preventDefault();
-        return (
-            <Paper className = {this.getBgStyle()}>
-                <GridWrapperStyled className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-xs-center">
-                    <Grid className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3">
-                        <img src="../../../asstets/logo.png" alt=""/>
-                    </Grid>
-                    <Grid className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3">
-                        <Paper className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded">
-                            <form onSubmit = {this.handleSubmit}>
-                                <GridGapStyled className="MuiGrid-root MuiGrid-container">
-                                    <Grid className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12">
-                                        <TypographyStyled variant="h1" component="h1" className="MuiTypography-root jss132 MuiTypography-h4 MuiTypography-alignLeft">Войти</TypographyStyled >
-                                        <Typography className="MuiTypography-root MuiTypography-body1 MuiTypography-alignLeft">
-                                            Уже зарегистрированы? 
-                                            <Link href="/login" onClick={preventDefault}>Войти</Link>
-                                        </Typography >
-                                    </Grid>
-                                    <Grid className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12">
-                                        <FormControlStyled className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth">
-                                            <FormLabel className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink Mui-required Mui-required">
-                                            </FormLabel>
-                                            <Input
-                                                type="text"
-                                                name="email"
-                                                placeholder="Адрес электронной почты *"
-                                                value = {email}
-                                                onChange = {this.handleEmailChange}
-                                                required
-                                            />
-                                        </FormControlStyled>
-                                    </Grid>
-                                    <GridPaddingRightStyled className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6">
-                                        <FormControlStyled className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth">
-                                            <Input className=""
-                                                type="text"
-                                                name="username"
-                                                placeholder="Имя*"
-                                                value = {userName}
-                                                onChange = {this.handleUserNameChange}
-                                                required
-                                            />
-                                        </FormControlStyled>
-                                    </GridPaddingRightStyled>
-                                    <GridPaddingLeftStyled className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6">
-                                        <FormControlStyled className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth">
-                                            <Input
-                                                type="text"
-                                                name="username"
-                                                placeholder="Фамилия*"
-                                                value = {userSurname}
-                                                onChange = {this.handleUserSurnameChange}
-                                                required
-                                            />
-                                        </FormControlStyled>
-                                    </GridPaddingLeftStyled>
-                                    <Grid className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12">
-                                        <FormControl className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth">
-                                            <Input
-                                                type="password"
-                                                name="password"
-                                                placeholder="Пароль*"
-                                                value = {password}
-                                                onChange = {this.handlePasswordChange}
-                                                required
-                                            />
-                                        </FormControl>
-                                    </Grid>
-                                    <Grid className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12" align="right">
-                                        <ButtonStyled type="submit">Зарегистрироваться</ButtonStyled>
-                                    </Grid>
-                                </GridGapStyled>
-                            </form>
-                        </Paper>
-                    </Grid>
-                </GridWrapperStyled>
-            </Paper>
-        );
-    }
+    const handlePasswordChange = useCallback(event => {
+        setPassword(event.target.value);
+    }, [])
+
+    const handleEmailChange = useCallback((e) => {
+        setEmail(e.target.value);
+    }, [])
+
+    const changeToggle = useCallback(()=>{
+        toggle(state => !state);
+    }, [])
+
+    return (
+        <FullContainer className={getBgStyle}>
+            <Grid item xs={3}>
+            <img src={logo} alt=""/>
+            </Grid>
+            <Grid item xs={3}>
+                {!active ? <SignupContent
+                    userName={userName}
+                    userSurname={userSurname}
+                    changeForm={changeToggle}
+                    password={password}
+                    email={email}
+                    errorPassword={errorPassword}
+                    login={login}
+                    getBgStyle={getBgStyle}
+                    preventDefault={preventDefault}
+                    handleSubmit={handleSubmit}
+                    handleUserNameChange={handleUserNameChange}
+                    handlePasswordChange={handlePasswordChange}
+                /> : <LoginContent />}
+            </Grid>
+        </FullContainer>
+    )
 }
 
-export default Signup;
+// class Signup extends React.Component {
+//     state = {userName: '', password: '', userSurname: '', email: ''};
+
+//     getBgStyle = () => {
+//         return css.main__bg;
+//     }
+
+//     handleSubmit = event => {
+//         event.preventDefault();
+//         this.props.changePage('map');
+//     }
+//     handleUserNameChange = event => {
+//         this.setState({userName: event.target.value});
+//     }
+
+//     handlePasswordChange = event => {
+//         this.setState({password: event.target.value});
+//     }
+
+//     handleUserSurnameChange = event => {
+//         this.setState({userSurname: event.target.value});
+//     }
+
+//     handleEmailChange = event => {
+//         this.setState({email: event.target.value});
+//     }
+
+//     render() {
+//         const {userName, password, userSurname, email } = this.state;
+//         const preventDefault = event => event.preventDefault();
+//         return (
+//             <Paper className = {this.getBgStyle()}>
+//                 <GridWrapperStyled className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-xs-center">
+//                     <Grid  item xs={3}>
+//                         <img src="../../../asstets/logo.png" alt=""/>
+//                     </Grid>
+//                     <Grid  item xs={3}>
+//                         <SignupContent/>
+//                     </Grid>
+//                 </GridWrapperStyled>
+//             </Paper>
+//         );
+//     }
+// }
+
+export default SignupLayout;

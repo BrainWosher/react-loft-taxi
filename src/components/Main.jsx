@@ -6,13 +6,16 @@ import Map from './../components/pages/Map';
 import Profile from './pages/profile/Profile';
 import Signup from './../components/pages/signup/Signup';
 import {routes} from './../helpers/routes';
+import { AuthProvider, authHOC } from '../Context/context';
 
 const getComponents = {
   profile: Profile,
   map: Map,
   login: Login,
-  signup: Signup
+  signup: authHOC(Signup)
 }
+
+const HeaderComponent = authHOC(Header);
 
 class Main extends Component {
     state = {
@@ -20,20 +23,13 @@ class Main extends Component {
         pages: {
             list: [],
             active: null
-        },
-        isLoggedIn: false
+        }
     }
 
     changePage = (pageId) => {
         this.setState({active: pageId});
     }
 
-    changeLoggedStatus= () => {
-        this.setState(state => {
-            return !state.isLoggedIn;
-        })
-    }
-    
     render() {
     
     const { active } = this.state;
@@ -42,11 +38,13 @@ class Main extends Component {
     return (
         <div>
             <div>
-                <Header changePage = {this.changePage} routes= {routes} activePage = {active}  authorizationStatus = {this.changeLoggedStatus}/>
+                <AuthProvider>
+                    <HeaderComponent changePage = {this.changePage} routes= {routes} activePage = {active}/>                           
                     <C changePage = {this.changePage}/>
+                </AuthProvider>
             </div>
         </div>
-    );
+        );
     }
 }
 export default Main;
