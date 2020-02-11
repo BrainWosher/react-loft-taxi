@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import {AppBar, Button, Toolbar, styled} from '@material-ui/core';
 import {Logo} from 'loft-taxi-mui-theme';
 import Navigation from '../navigation/Navigation';
@@ -15,6 +16,13 @@ const ToolbarStyled = styled(Toolbar)({
 });
 
 class Header extends PureComponent {
+  static propTypes = {
+    changePage: PropTypes.func,
+    routes: PropTypes.array,
+    activePage: PropTypes.string, 
+    isLoggedIn: PropTypes.bool, 
+    email: PropTypes.object
+  }
   static defaultProps = {
     changePage: () => {},
     routes: []

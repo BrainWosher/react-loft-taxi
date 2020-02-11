@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Input, Button, FormControl, FormLabel, Link, Typography, styled,  Card } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 const TypographyStyled = styled(Typography)({
     marginBottom: '30px'
@@ -69,6 +70,17 @@ const LoginContent = ({
             </Grid>
         </form>
     </AuthCard>
+}
+
+LoginContent.prototype = {
+    userName: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    errorPassword: PropTypes.func,
+    preventDefault: PropTypes.func,
+    handleSubmit: PropTypes.func,
+    handleUserNameChange: PropTypes.func,
+    handlePasswordChange: PropTypes.func,
+    changeForm: PropTypes.func
 }
 
 export default LoginContent;

@@ -1,14 +1,11 @@
 import React, { useCallback, useContext,useMemo, useState } from 'react';
-import { Paper, Grid, Input, Button, FormControl, FormLabel, Link, Typography, styled } from '@material-ui/core';
+import PropTypes from 'prop-types';
+import { Paper, Grid, styled } from '@material-ui/core';
 import SignupContent from './SignupContent';
 import LoginContent from '../login/LoginContent';
-import {AuthConsumer, authHOC } from '../../../Context/context';
+import {AuthConsumer} from '../../../Context/context';
 import css from './style.module.css';
 import logo from '../../../asstets/logo.png';
-
-const GridWrapperStyled = styled(Grid)({
-    minHeight:'92vh'
-});
 
 const FullContainer = styled(Paper)({
     height: '100vh',
@@ -83,56 +80,28 @@ const SignupLayout = ({
                     preventDefault={preventDefault}
                     handleSubmit={handleSubmit}
                     handleUserNameChange={handleUserNameChange}
+                    handleUserSurnameChange={handleUserSurnameChange}
                     handlePasswordChange={handlePasswordChange}
+                    handleEmailChange={handleEmailChange}
                 /> : <LoginContent />}
             </Grid>
         </FullContainer>
     )
 }
-
-// class Signup extends React.Component {
-//     state = {userName: '', password: '', userSurname: '', email: ''};
-
-//     getBgStyle = () => {
-//         return css.main__bg;
-//     }
-
-//     handleSubmit = event => {
-//         event.preventDefault();
-//         this.props.changePage('map');
-//     }
-//     handleUserNameChange = event => {
-//         this.setState({userName: event.target.value});
-//     }
-
-//     handlePasswordChange = event => {
-//         this.setState({password: event.target.value});
-//     }
-
-//     handleUserSurnameChange = event => {
-//         this.setState({userSurname: event.target.value});
-//     }
-
-//     handleEmailChange = event => {
-//         this.setState({email: event.target.value});
-//     }
-
-//     render() {
-//         const {userName, password, userSurname, email } = this.state;
-//         const preventDefault = event => event.preventDefault();
-//         return (
-//             <Paper className = {this.getBgStyle()}>
-//                 <GridWrapperStyled className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-xs-center">
-//                     <Grid  item xs={3}>
-//                         <img src="../../../asstets/logo.png" alt=""/>
-//                     </Grid>
-//                     <Grid  item xs={3}>
-//                         <SignupContent/>
-//                     </Grid>
-//                 </GridWrapperStyled>
-//             </Paper>
-//         );
-//     }
-// }
-
+SignupLayout.prototype = {
+    userName: PropTypes.string.isRequired,
+    userSurname: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    changeForm: PropTypes.func,
+    errorPassword: PropTypes.object,
+    login: PropTypes.func,
+    getBgStyle: PropTypes.func,
+    preventDefault: PropTypes.func,
+    handleSubmit: PropTypes.func,
+    handleUserNameChange: PropTypes.func,
+    handleUserSurnameChange: PropTypes.func,
+    handlePasswordChange: PropTypes.func,
+    handleEmailChange: PropTypes.func
+}
 export default SignupLayout;

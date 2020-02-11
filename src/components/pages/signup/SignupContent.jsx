@@ -1,6 +1,6 @@
 import React from 'react';
-import { Paper, Grid, Input, Button, FormControl, FormLabel, Link, Typography, styled } from '@material-ui/core';
-import css from './style.module.css';
+import PropTypes from 'prop-types';
+import { Paper, Grid, Input, Button, FormControl, Link, Typography, styled } from '@material-ui/core';
 
 
 const TypographyStyled = styled(Typography)({
@@ -112,4 +112,20 @@ const SignupContent = ({
         </form>
     </Paper>
 }
+
+SignupContent.prototype = {
+    userName: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    userSurname: PropTypes.string.isRequired,
+    errorPassword: PropTypes.func,
+    preventDefault: PropTypes.func,
+    handleSubmit: PropTypes.func,
+    handleUserNameChange: PropTypes.func,
+    handlePasswordChange: PropTypes.func,
+    handleEmailChange: PropTypes.func,
+    handleUserSurnameChange: PropTypes.func,
+    changeForm: PropTypes.func
+}
+
 export default SignupContent;

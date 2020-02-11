@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import './../App.css';
 import Header from './header/Header';
 import Login from './pages/login/Login';
@@ -18,6 +19,11 @@ const getComponents = {
 const HeaderComponent = authHOC(Header);
 
 class Main extends Component {
+    static propTypes = {
+        changePage: PropTypes.string,
+        routes: PropTypes.string,
+        active: PropTypes.string
+    };
     state = {
         active: 'login',
         pages: {

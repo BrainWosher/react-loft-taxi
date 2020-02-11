@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Paper, Grid, Box , Input, Button, FormControl,FormHelperText, FormLabel, Typography, styled } from '@material-ui/core';
 import {MCLogo} from 'loft-taxi-mui-theme';
 
@@ -40,6 +41,17 @@ const ButtonStyled = styled(Button)({
 });
 
 class Profile extends React.Component { 
+    static propTypes = {
+        cardNumber: PropTypes.string.isRequired,
+        validThru: PropTypes.string.isRequired,
+        nameOwner: PropTypes.string.isRequired,
+        cvc: PropTypes.string.isRequired,
+        handleSubmit: PropTypes.func,
+        handleCardNumberChange: PropTypes.func,
+        handleValidThruChange: PropTypes.func,
+        handleNameOwnerChange: PropTypes.func,
+        handleCvcChange: PropTypes.func
+    };
     state = {cardNumber: '', validThru: '', nameOwner: '', cvc: ''};
 
     handleSubmit = event => {

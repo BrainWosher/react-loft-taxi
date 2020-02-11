@@ -1,8 +1,9 @@
 import React, { useCallback, useContext,useMemo, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Paper, Grid, styled } from '@material-ui/core';
 import css from './style.module.css';
 import logo from '../../../asstets/logo.png';
-import {AuthConsumer, authHOC } from '../../../Context/context';
+import {AuthConsumer} from '../../../Context/context';
 import LoginContent from './LoginContent';
 import SignupContent from '../signup/SignupContent';
 
@@ -69,6 +70,19 @@ const LoginLayout = ({
              </Grid>
          </FullContainer>
     );
+}
+
+LoginLayout.prototype = {
+    userName: PropTypes.string.isRequired,
+    changeForm: PropTypes.func,
+    password: PropTypes.string.isRequired,
+    errorPassword: PropTypes.object,
+    login: PropTypes.func,
+    getBgStyle: PropTypes.func,
+    preventDefault: PropTypes.func,
+    handleSubmit: PropTypes.func,
+    handleUserNameChange: PropTypes.func,
+    handlePasswordChange: PropTypes.func
 }
 
 export default LoginLayout;
