@@ -8,7 +8,7 @@ import css from './style.module.css';
 import logo from '../../../asstets/logo.png';
 
 const FullContainer = styled(Paper)({
-    height: '100vh',
+    height: '98vh',
     padding: 0,
     display: 'flex',
     alignItems: 'center',

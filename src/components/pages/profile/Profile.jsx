@@ -52,6 +52,13 @@ class Profile extends React.Component {
         handleNameOwnerChange: PropTypes.func,
         handleCvcChange: PropTypes.func
     };
+
+    static defaultProps = {
+        cardNumber: '123456789456',
+        validThru: '02/20',
+        nameOwner: 'Sergey Prokopenko',
+        cvc: '123'
+    }
     state = {cardNumber: '', validThru: '', nameOwner: '', cvc: ''};
 
     handleSubmit = event => {

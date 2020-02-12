@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 const {
     Provider,
     Consumer: AuthConsumer
 } = React.createContext('');
 
-class AuthProvider extends Component {
+class AuthProvider extends PureComponent {
     state = {
         isLoggedIn: false,
         email: '',
@@ -51,7 +51,7 @@ class AuthProvider extends Component {
 }
 
 function authHOC(WrappedComponent){
-    return class extends Component {
+    return class extends PureComponent {
         static displayName = 'authHOC'
 
         render() {

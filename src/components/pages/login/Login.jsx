@@ -8,7 +8,7 @@ import LoginContent from './LoginContent';
 import SignupContent from '../signup/SignupContent';
 
 const FullContainer = styled(Paper)({
-    height: '100vh',
+    height: '98vh',
     padding: 0,
     display: 'flex',
     alignItems: 'center',
