@@ -84,7 +84,7 @@ class Profile extends React.Component {
     render() {
         const {cardNumber, validThru, nameOwner, cvc} = this.state;
         return (
-            <PaperMainStyled elevation={1} className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded">
+            <PaperMainStyled elevation={1} data-testid={'page-profile'} className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded">
                 <GridWrapperStyled container direction="column"
                     justify="flex-start"
                     alignItems="center"

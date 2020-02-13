@@ -23,7 +23,7 @@ const LoginContent = ({
     changeForm
 }) => {
     return <AuthCard >
-        <form onSubmit = {handleSubmit}>
+        <form onSubmit = {handleSubmit} data-testid="login-content">
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <TypographyStyled variant="h1" component="h1" className="MuiTypography-root jss132 MuiTypography-h4 MuiTypography-alignLeft">Войти</TypographyStyled >

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Paper, Grid, styled } from '@material-ui/core';
 import SignupContent from './SignupContent';
 import LoginContent from '../login/LoginContent';
-import {AuthConsumer} from '../../../Context/context';
+import {Context} from '../../../Context/context';
 import css from './style.module.css';
 import logo from '../../../asstets/logo.png';
 
@@ -25,7 +25,7 @@ const SignupLayout = ({
     const [errorPassword, setErrorPassword] = useState('');
 
     const [active, toggle] = useState(false);
-    const {login} = useContext(AuthConsumer);
+    const {login} = useContext(Context);
     const getBgStyle = useMemo(() => {
         return css.main__bg;
     }, [])
@@ -63,7 +63,7 @@ const SignupLayout = ({
     }, [])
 
     return (
-        <FullContainer className={getBgStyle}>
+        <FullContainer className={getBgStyle} data-testid={'signup-layout'}>
             <Grid item xs={3}>
             <img src={logo} alt=""/>
             </Grid>

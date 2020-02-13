@@ -1,9 +1,6 @@
 import React, { PureComponent } from 'react';
 
-const {
-    Provider,
-    Consumer: AuthConsumer
-} = React.createContext('');
+const Context = React.createContext('');
 
 class AuthProvider extends PureComponent {
     state = {
@@ -36,7 +33,7 @@ class AuthProvider extends PureComponent {
         const { children } = this.props;
         const { isLoggedIn, email, password } = this.state;
         return(
-            <Provider
+            <Context.Provider
                 value = {{
                     isLoggedIn,
                     email,
@@ -45,7 +42,7 @@ class AuthProvider extends PureComponent {
                     logout: this.logout
                 }}>
                 {children}
-            </Provider>
+            </Context.Provider>
         );
     }
 }
@@ -56,17 +53,21 @@ function authHOC(WrappedComponent){
 
         render() {
             return (
-                <AuthConsumer>
+                <Context.Consumer>
                     {contextProps => (
                         <WrappedComponent 
                             {...contextProps}
                             {...this.props}
                         />
                     )}
-                </AuthConsumer>
+                </Context.Consumer>
             );
         }
     };
 }
 
-export { AuthProvider, AuthConsumer, authHOC};
+export {
+    AuthProvider,
+    Context,
+    authHOC
+};

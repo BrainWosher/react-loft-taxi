@@ -46,7 +46,7 @@ const SignupContent = ({
     handleUserSurnameChange,
     changeForm
 }) => {
-    return <Paper root elevation1 rounded outlined>
+    return <Paper root elevation1 rounded outlined data-testid={'signup-content'}>
         <form onSubmit = {handleSubmit}>
             <GridGapStyled className="MuiGrid-root MuiGrid-container">
                 <Grid item xs={12}>
@@ -85,7 +85,7 @@ const SignupContent = ({
                     <FormControlStyled className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth">
                         <Input
                             type="text"
-                            name="username"
+                            name="userSurname"
                             placeholder="Фамилия*"
                             value = {userSurname}
                             onChange = {handleUserSurnameChange}
@@ -106,7 +106,7 @@ const SignupContent = ({
                     </FormControl>
                 </Grid>
                 <Grid item xs={12}>
-                    <ButtonStyled type="submit">Зарегистрироваться</ButtonStyled>
+                    <ButtonStyled type="submit" data-testid="signup-submit">Зарегистрироваться</ButtonStyled>
                 </Grid>
             </GridGapStyled>
         </form>
