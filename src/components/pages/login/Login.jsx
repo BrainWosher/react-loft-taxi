@@ -66,7 +66,7 @@ const LoginLayout = ({
                      handleSubmit={handleSubmit}
                      handleUserNameChange={handleUserNameChange}
                      handlePasswordChange={handlePasswordChange}
-                 /> : <SignupContent />}
+                 /> : <SignupContent changeForm={changeToggle} />}
              </Grid>
          </FullContainer>
     );

@@ -20,8 +20,8 @@ const props = {
     changeForm: jest.fn(),
 }
 
-describe('Тест компонента Login', () => {
-    it("LoginContent component exist",()=>{
+describe('Тест компонента Signup', () => {
+    it("SignupContent component exist",()=>{
         expect(<SignupContent/>).toBeTruthy();
     });
     it('input test', () => {
@@ -45,7 +45,7 @@ describe('Тест компонента Login', () => {
         expect(props.handleSubmit).toBeCalled()
     });
     it('SignupContent is rendered', () => {
-        const { getByTestId } = render(<SignupContent/>);
+        const { getByTestId } = render(<SignupContent {...props}/>);
         expect(getByTestId('signup-content')).toBeInTheDocument();
     });
 });

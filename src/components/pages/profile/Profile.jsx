@@ -41,6 +41,15 @@ const ButtonStyled = styled(Button)({
 });
 
 class Profile extends React.Component { 
+    constructor(props) {
+        super(props);
+        this.state = {
+            cardNumber: props.cardNumber, 
+            validThru: props.validThru, 
+            nameOwner: props.nameOwner, 
+            cvc: props.cvc
+        };
+    }
     static propTypes = {
         cardNumber: PropTypes.string.isRequired,
         validThru: PropTypes.string.isRequired,
@@ -59,11 +68,12 @@ class Profile extends React.Component {
         nameOwner: 'Sergey Prokopenko',
         cvc: '123'
     }
-    state = {cardNumber: '', validThru: '', nameOwner: '', cvc: ''};
+    
 
     handleSubmit = event => {
         event.preventDefault();
-        this.props.changePage('map');
+        // this.props.changePage('map');
+        this.props.handleSubmit();
     }
     handleCardNumberChange = event => {
         this.setState({cardNumber: event.target.value});
@@ -173,7 +183,7 @@ class Profile extends React.Component {
                                             </Grid>
                                         </Grid>
                                         <Grid container justify="center" alignItems="center" className="MuiGrid-root">
-                                            <ButtonStyled type="submit">Сохранить</ButtonStyled>
+                                            <ButtonStyled type="submit"  data-testid={'profile-submit'}>Сохранить</ButtonStyled>
                                         </Grid>
                                     </Grid>
                                 </Grid>
