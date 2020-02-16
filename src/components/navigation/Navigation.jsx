@@ -1,7 +1,12 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import css from './style.module.css';
+import Button from '@material-ui/core/Button';
 
 class Navigation extends PureComponent {
+    static propTypes = {
+        page: PropTypes.string
+    }
     handleClick = () =>{
         const {changePage, page} = this.props;
         changePage(page);
@@ -12,12 +17,12 @@ class Navigation extends PureComponent {
         }
         return '';
     }
-render() {
-    const { page } = this.props;
-    return(
-        <button onClick= {this.handleClick} className={this.getActiveStyle()}>
-            { page }
-        </button>
+    render() {
+        const { page } = this.props;
+        return(
+            <Button onClick= {this.handleClick} className={this.getActiveStyle()}>
+                { page }
+            </Button>
         );
     }
 }

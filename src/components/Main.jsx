@@ -1,20 +1,29 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import './../App.css';
 import Header from './header/Header';
-import Login from './../components/pages/Login';
+import Login from './pages/login/Login';
 import Map from './../components/pages/Map';
-import Profile from './../components/pages/Profile';
-import Signup from './../components/pages/Signup';
+import Profile from './pages/profile/Profile';
+import Signup from './../components/pages/signup/Signup';
 import {routes} from './../helpers/routes';
+import { AuthProvider, authHOC } from '../Context/context';
 
 const getComponents = {
   profile: Profile,
   map: Map,
   login: Login,
-  signup: Signup
+  signup: authHOC(Signup)
 }
 
+const HeaderComponent = authHOC(Header);
+
 class Main extends Component {
+    static propTypes = {
+        changePage: PropTypes.string,
+        routes: PropTypes.string,
+        active: PropTypes.string
+    };
     state = {
         active: 'login',
         pages: {
@@ -33,13 +42,15 @@ class Main extends Component {
     const C = getComponents[active] || Login;
 
     return (
-        <div className="App">
+        <div>
             <div>
-                <Header changePage = {this.changePage} routes= {routes} activePage = {active} />
-                <C changePage = {this.changePage}/>
+                <AuthProvider>
+                    <HeaderComponent changePage = {this.changePage} routes= {routes} activePage = {active}/>                           
+                    <C changePage = {this.changePage}/>
+                </AuthProvider>
             </div>
         </div>
-    );
+        );
     }
 }
 export default Main;
