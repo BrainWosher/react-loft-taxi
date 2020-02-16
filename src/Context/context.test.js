@@ -6,40 +6,40 @@ describe('Тест компонента context', () => {
     it("AuthProvider component exist",()=>{
         expect(<AuthProvider/>).toBeTruthy();
     });
+});
+
+const Auth = () => {
+    return <AuthProvider>
+        <Context.Consumer>
+            {({ isLoggedIn, login, logout}) => {
+                const handleLogin = () => {
+                    login({
+                        email: 'test@test.test',
+                        password: 'test'
+                    })
+                }
+                return <>
+                    <button type="button" data-testid="login" onClick={handleLogin}>Login</button>
+                    <button type="button" data-testid="logout" onClick={logout}>Logout</button>
+                    <div data-testid="status">{String(isLoggedIn)}</div>
+                </>
+            }}
+        </Context.Consumer>
+    </AuthProvider>
+}
+describe('Тест компонента контекст', () => {
+    it('AuthProvider component exist', () => {
+        const {getByTestId} = render(Auth())
+        const loginBtn = getByTestId('login')
+        const logoutBtn = getByTestId('logout')
+        const status = getByTestId('status')
+        expect(status.textContent).toEqual('false');
+        fireEvent.click(loginBtn);
+        expect(status.textContent).toEqual('true');
+        fireEvent.click(logoutBtn);
+        expect(status.textContent).toEqual('false');
+    });
     it("Context component exist",()=>{
         expect(<Context/>).toBeTruthy();
     });
 });
-
-// const Mock = () => (
-//     <AuthProvider>
-//         <Context.Consumer>
-//             {({ isLoggedIn, email, password }) => {
-//                 const setStatusFalse = () => {
-//                     setStatus(false)
-//                 }
-//                 return <>
-//                     <button type="button" data-testid="isLoggedIn" onClick={setStatusFalse}></button>
-
-//                     <input data-testid="email-test" value={email}/>
-//                     <input data-testid="passowrd-test" value={password}/>
-//                 </>
-//             }}
-//         </Context.Consumer>
-//     </AuthProvider>
-// );
-// describe('Context', () => {
-//     it('свойство контекста', () => {
-//         const { getByTestId, debug } = render(Mock());
-//         const testedContet = getByTestId('locale').textContent;
-//         expect(testedContet).toEqual('en-US');
-//     });
-
-//     it('при вызове метода контекста вернет перевод', () => {
-//         const { getByTestId } = render(Mock());
-//         const div = getByTestId('locale');
-//         const btn = getByTestId('setLocale');
-//         fireEvent.click(btn);
-//         expect(div.textContent).toEqual('ru-RU');
-//     });
-// });

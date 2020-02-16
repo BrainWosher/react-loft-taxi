@@ -10,11 +10,6 @@ const props = {
     errorPassword: '',
     preventDefault: jest.fn(),
     handleSubmit: jest.fn(),
-    // если клик
-    //     (e) => {
-    //     e.preventDefault()
-    //     jest.fn()
-    //// },
     handleCardNumberChange: jest.fn(),
     handleValidThruChange: jest.fn(),
     handleNameOwnerChange: jest.fn(),
@@ -49,11 +44,3 @@ it('Profile page submit button test', () => {
     fireEvent.submit(getByTestId('profile-submit'))
     expect(props.handleSubmit).toBeCalled()
 });
-// it('Значения в инпуте ввода имени изменяются', () => {
-//     const handleCardNumberChange = jest.fn();
-//     const { getByPlaceholderText } = render(<Profile handleCardNumberChange={handleCardNumberChange} {...props}/>);
-//     const input = getByPlaceholderText('USER NAME');
-//     fireEvent.change(input, { target: { value: 'USER' } });
-//     expect(input.value).toBe('USER');
-//     expect(handleCardNumberChange).toBeCalled();
-// });

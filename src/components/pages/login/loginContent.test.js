@@ -8,11 +8,6 @@ const props = {
     errorPassword: '',
     preventDefault: jest.fn(),
     handleSubmit: jest.fn(),
-    // если клик
-    //     (e) => {
-    //     e.preventDefault()
-    //     jest.fn()
-    //// },
     handleUserNameChange: jest.fn(),
     handlePasswordChange: jest.fn(),
     changeForm: jest.fn(),
