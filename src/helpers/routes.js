@@ -1,1 +1,0 @@
-export const routes = ['profile','map','login', 'signup'];

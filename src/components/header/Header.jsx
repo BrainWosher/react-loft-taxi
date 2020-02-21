@@ -15,6 +15,8 @@ const ToolbarStyled = styled(Toolbar)({
   justifyContent: 'space-between'
 });
 
+const LogoImage = () => { return <Logo display="flex" justifyContent="flex-start" />};
+
 class Header extends PureComponent {
   static propTypes = {
     changePage: PropTypes.func,
@@ -42,18 +44,19 @@ class Header extends PureComponent {
       <div>
         <AppBarStyled position={"static"}>
           <ToolbarStyled>
-            <Logo display="flex" justifyContent="flex-start" />
-            <div>
-              {routes.filter(page => !['signup','login'].includes(page)).map(page =>
-                <Navigation
-                  key={page}
-                  page = {page}
-                  changePage={changePage}
-                  activePage = {activePage}
-                  display="flex"
-                  justifyContent="flex-end"
-                />
-              )}
+            <LogoImage/>
+              <div>
+                {routes.filter(route => !['signup','login'].includes(route.path)).map(page =>
+                  <Navigation
+                    key={page}
+                    page = {page.path}
+                    changePage={changePage}
+                    activePage = {activePage}
+                    link={page.path}
+                    display="flex"
+                    justifyContent="flex-end"
+                  />
+                )}
               <Button onClick={this.logout}>
                 Logout
               </Button>

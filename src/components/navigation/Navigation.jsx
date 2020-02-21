@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import css from './style.module.css';
 import Button from '@material-ui/core/Button';
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 class Navigation extends PureComponent {
     static propTypes = {

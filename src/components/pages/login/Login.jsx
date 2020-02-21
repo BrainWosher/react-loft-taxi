@@ -1,5 +1,7 @@
 import React, { useCallback, useContext,useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom'
+
 import { Paper, Grid, styled } from '@material-ui/core';
 import css from './style.module.css';
 import logo from '../../../asstets/logo.png';
@@ -28,11 +30,13 @@ const LoginLayout = ({
         return css.main__bg;
     }, [])
     const preventDefault = event => event.preventDefault();
+    const history = useHistory();
+
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
         const result = login({email: userName, password});
         if (!result) {
-            changePage('map')
+            history.replace('/map')
         } else {
             setErrorPassword(result.error)
         }

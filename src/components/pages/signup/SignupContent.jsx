@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Paper, Grid, Input, Button, FormControl, Link, Typography, styled } from '@material-ui/core';
+import {Redirect} from 'react-router-dom';
 
 
 const TypographyStyled = styled(Typography)({
@@ -53,7 +54,8 @@ const SignupContent = ({
                     <TypographyStyled variant="h1" component="h1" className="MuiTypography-root jss132 MuiTypography-h4 MuiTypography-alignLeft">Войти</TypographyStyled >
                     <Typography className="MuiTypography-root MuiTypography-body1 MuiTypography-alignLeft">
                         Уже зарегистрированы? 
-                        <Link href="/login" onClick={preventDefault}>Войти</Link>
+                        <Redirect to="/login">Войти</Redirect>
+                        {/* <Link href="/login" onClick={preventDefault}>Войти</Link> */}
                         <Button onClick={changeForm}>Войти</Button>
                     </Typography >
                 </Grid>
