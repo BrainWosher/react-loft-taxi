@@ -64,11 +64,6 @@ class Main extends Component {
                             path={'/signup'}
                             component={getComponents['signup']}
                         />
-                        <Route 
-                            path={'/'}
-                            exact
-                            component={<Redirect to={'login'}/>}
-                        />
                     </Switch>
                     <Redirect to={'login'}/>
                 </AuthProvider>

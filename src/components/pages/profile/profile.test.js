@@ -1,6 +1,6 @@
 import React from 'react';
 import Profile from './Profile';
-import { fireEvent, render, getByText } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 const props = {
     cardNumber: '1231234',

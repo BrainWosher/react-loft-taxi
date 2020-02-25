@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Paper, Grid, Box , Input, Button, FormControl,FormHelperText, FormLabel, Typography, styled } from '@material-ui/core';
-import {MCLogo} from 'loft-taxi-mui-theme';
 
 const PaperMainStyled = styled(Paper)({
     backgroundSize: 'cover',

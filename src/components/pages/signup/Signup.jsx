@@ -83,7 +83,7 @@ const SignupLayout = ({
                     handleUserSurnameChange={handleUserSurnameChange}
                     handlePasswordChange={handlePasswordChange}
                     handleEmailChange={handleEmailChange}
-                /> : <LoginContent />}
+                /> : <LoginContent changeForm={changeToggle}/>}
             </Grid>
         </FullContainer>
     )

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid, Input, Button, FormControl, FormLabel, Link, Typography, styled,  Card } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { Route, Switch, Redirect } from 'react-router-dom';
 
 const TypographyStyled = styled(Typography)({
     marginBottom: '30px'

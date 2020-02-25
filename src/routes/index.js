@@ -1,10 +1,6 @@
 import React from 'react';
 
 import GetComponents from './helper'
-import Login from '../components/pages/login/Login';
-import Profile from '../components/pages/profile/Profile';
-import Signup from '../components/pages/signup/Signup';
-import Map from '../components/pages/map/Map';
 export default [
     {
         path: 'profile',

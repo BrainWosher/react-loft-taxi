@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Paper, Grid, Input, Button, FormControl, Link, Typography, styled } from '@material-ui/core';
+import { Paper, Grid, Input, Button, FormControl, Typography, styled } from '@material-ui/core';
 import {Redirect} from 'react-router-dom';
 
 
