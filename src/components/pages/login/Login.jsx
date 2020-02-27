@@ -1,6 +1,5 @@
 import React, { useCallback, useContext,useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom'
 
 import { Paper, Grid, styled } from '@material-ui/core';
 import css from './style.module.css';
@@ -8,6 +7,11 @@ import logo from '../../../asstets/logo.png';
 import {Context} from '../../../Context/context';
 import LoginContent from './LoginContent';
 import SignupContent from '../signup/SignupContent';
+//container
+import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { login as actionLogin } from 'dugs/user';
+
 
 const FullContainer = styled(Paper)({
     height: '98vh',
@@ -20,6 +24,7 @@ const FullContainer = styled(Paper)({
 const LoginLayout = ({
     changePage
 }) => {
+    const dispatch = useDispatch();
     const [userName, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [errorPassword, setErrorPassword] = useState('')
@@ -35,6 +40,7 @@ const LoginLayout = ({
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
         const result = login({email: userName, password});
+        dispatch(actionLogin());
         if (!result) {
             history.replace('/map')
         } else {

@@ -1,17 +1,17 @@
 
 import React, {memo, useCallback, useContext} from 'react';
-import {compose} from "redux";
 // import { getIsAuthSelector } from 'modules/auth';
 import {Context} from '../../../Context/context';
 import { Route, Redirect } from "react-router-dom";
-import { useSelector, connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 const PrivateRoute = ({component: C, ...props}) => {
-    const {isLoggedIn} = useContext(Context);
+    // const {isLoggedIn} = useContext(Context);
+    const isLoggin = useSelector(store => store.user.isLogged)
     // const isLoggin = useSelector(store => store.user.isLogged);
 
     const getComponent = useCallback((...a) => {
-        if (isLoggedIn) {
+        if (isLoggin) {
             return <C {...props} />;
         }
 
