@@ -48,7 +48,7 @@ class Header extends PureComponent {
               <div>
                 {routes.filter(route => !['signup','login'].includes(route.path)).map(page =>
                   <Navigation
-                    key={page}
+                    key={page.path}
                     page = {page.path}
                     changePage={changePage}
                     activePage = {activePage}
