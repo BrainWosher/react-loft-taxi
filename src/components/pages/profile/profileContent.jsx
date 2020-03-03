@@ -51,7 +51,7 @@ const ProfileContent = ({
                             <GridStyled elevation={3}>
                                 <span></span>
                                 <FormControlStyled fullWidth>
-                                    <InputLabel required shrink animated>
+                                    <InputLabel required shrink animated="true">
                                         Номер карты:
                                     </InputLabel>
                                     <Input
@@ -65,7 +65,7 @@ const ProfileContent = ({
                                     />
                                 </FormControlStyled>
                                 <FormControl fullWidth format="MM/yy">
-                                    <InputLabel required shrink animated>
+                                    <InputLabel required shrink animated="true">
                                         Срок действия:
                                     </InputLabel>
                                     <Input
@@ -83,7 +83,7 @@ const ProfileContent = ({
                         <Grid item xs={6}>
                             <GridStyled elevation={3}>
                                 <FormControlStyled fullWidth>
-                                    <InputLabel required shrink animated>
+                                    <InputLabel required shrink animated="true">
                                         Имя владельца:
                                     </InputLabel>
                                     <Input
@@ -96,7 +96,7 @@ const ProfileContent = ({
                                     />
                                 </FormControlStyled>
                                 <FormControl fullWidth>
-                                    <InputLabel required shrink animated>
+                                    <InputLabel required shrink animated="true">
                                         CVC:
                                     </InputLabel>
                                     <Input

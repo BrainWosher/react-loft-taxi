@@ -1,7 +1,9 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {AppBar, Button, Toolbar, styled} from '@material-ui/core';
+import {Link} from 'react-router-dom';
 import {Logo} from 'loft-taxi-mui-theme';
+
 import Navigation from '../navigation/Navigation';
 
 const AppBarStyled = styled(AppBar)({
@@ -17,14 +19,7 @@ const ToolbarStyled = styled(Toolbar)({
 
 const LogoImage = () => { return <Logo display="flex" justifyContent="flex-start" />};
 
-class Header extends PureComponent {
-  static propTypes = {
-    changePage: PropTypes.func,
-    routes: PropTypes.array,
-    activePage: PropTypes.string, 
-    isLoggedIn: PropTypes.bool, 
-    email: PropTypes.object
-  }
+class Header extends PureComponent {  
   static defaultProps = {
     changePage: () => {},
     routes: []
@@ -34,10 +29,11 @@ class Header extends PureComponent {
     const { changePage, logout }= this.props;
     changePage('login');
     logout();
+    localStorage.clear();
   }
 
   render() {
-    const { changePage, routes, activePage, isLoggedIn, email } = this.props;
+    const { changePage, routes, activePage, isLoggedIn, email} = this.props;
     if (!isLoggedIn) return null;
 
     return (
@@ -58,7 +54,7 @@ class Header extends PureComponent {
                   />
                 )}
               <Button onClick={this.logout}>
-                Logout
+                <Link to="/login">Logout</Link>
               </Button>
             </div>
           </ToolbarStyled>              
@@ -66,6 +62,14 @@ class Header extends PureComponent {
       </div>
     );
   }
+}
+
+Header.propTypes = {
+  changePage: PropTypes.func,
+  routes: PropTypes.array,
+  activePage: PropTypes.string, 
+  isLoggedIn: PropTypes.bool, 
+  email: PropTypes.object
 }
 
 export default Header;

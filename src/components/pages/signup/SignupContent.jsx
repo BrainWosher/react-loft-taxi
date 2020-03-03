@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Paper, Grid, Input, Button, FormControl, Typography, styled } from '@material-ui/core';
-import {Redirect} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const TypographyStyled = styled(Typography)({
@@ -45,7 +45,6 @@ const SignupContent = ({
     handlePasswordChange,
     handleEmailChange,
     handleUserSurnameChange,
-    changeForm
 }) => {
     return <Paper root elevation1 rounded outlined data-testid={'signup-content'}>
         <form onSubmit = {handleSubmit}>
@@ -53,10 +52,7 @@ const SignupContent = ({
                 <Grid item xs={12}>
                     <TypographyStyled variant="h1" component="h1" className="MuiTypography-root jss132 MuiTypography-h4 MuiTypography-alignLeft">Войти</TypographyStyled >
                     <Typography className="MuiTypography-root MuiTypography-body1 MuiTypography-alignLeft">
-                        Уже зарегистрированы? 
-                        <Redirect to="/login">Войти</Redirect>
-                        {/* <Link href="/login" onClick={preventDefault}>Войти</Link> */}
-                        <Button onClick={changeForm}>Войти</Button>
+                        Уже зарегистрированы? <Link to="/login">Войти</Link>
                     </Typography >
                 </Grid>
                 <Grid item xs={12}>
@@ -108,7 +104,7 @@ const SignupContent = ({
                     </FormControl>
                 </Grid>
                 <Grid item xs={12}>
-                    <ButtonStyled type="submit" data-testid="signup-submit">Зарегистрироваться</ButtonStyled>
+                    <ButtonStyled type="submit" data-testid="signup-submit">Войти</ButtonStyled>
                 </Grid>
             </GridGapStyled>
         </form>

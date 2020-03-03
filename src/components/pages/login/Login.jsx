@@ -1,4 +1,4 @@
-import React, { useCallback, useContext,useMemo, useState } from 'react';
+import React, { useCallback, useContext, useMemo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { Paper, Grid, styled } from '@material-ui/core';
@@ -9,7 +9,7 @@ import LoginContent from './LoginContent';
 import SignupContent from '../signup/SignupContent';
 //container
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login as actionLogin } from 'dugs/user';
 
 
@@ -21,13 +21,18 @@ const FullContainer = styled(Paper)({
     justifyContent: 'center'
 });
 
-const LoginLayout = ({
-    changePage
-}) => {
+const LoginLayout = () => {
     const dispatch = useDispatch();
     const [userName, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [errorPassword, setErrorPassword] = useState('')
+    const isLoggin = useSelector(store => !!store.user.isLoggin)
+
+    useEffect(()=> {
+        if (isLoggin) {
+            history.replace('/map');
+        }
+    }, [isLoggin])
 
     const [active, toggle] = useState(false)
     const {login} = useContext(Context);
@@ -40,7 +45,7 @@ const LoginLayout = ({
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
         const result = login({email: userName, password});
-        dispatch(actionLogin());
+        dispatch(actionLogin({email: userName, password}));
         if (!result) {
             history.replace('/map')
         } else {
@@ -56,9 +61,7 @@ const LoginLayout = ({
     const handlePasswordChange = useCallback(event => {
         setPassword(event.target.value);
     }, [])
-    const changeToggle = useCallback(() => {
-        toggle(state => !state)
-    }, [])
+    
     return (
         <FullContainer className={getBgStyle} data-testid="login-layout">
              <Grid item xs={3}>
@@ -67,7 +70,6 @@ const LoginLayout = ({
              <Grid item xs={3}>
                  {!active ? <LoginContent
                      userName={userName}
-                     changeForm={changeToggle}
                      password={password}
                      errorPassword={errorPassword}
                      login={login}
@@ -76,7 +78,7 @@ const LoginLayout = ({
                      handleSubmit={handleSubmit}
                      handleUserNameChange={handleUserNameChange}
                      handlePasswordChange={handlePasswordChange}
-                 /> : <SignupContent changeForm={changeToggle} />}
+                 /> : <SignupContent/>}
              </Grid>
          </FullContainer>
     );

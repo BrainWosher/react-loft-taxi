@@ -1,6 +1,6 @@
 import React, { useCallback,useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Paper, Grid, Button, styled } from '@material-ui/core';
+import { Paper, Grid, styled } from '@material-ui/core';
 
 import css from './style.module.css';
 import ProfileContent from './profileContent';

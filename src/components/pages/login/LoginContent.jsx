@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, Input, Button, FormControl, FormLabel, Link, Typography, styled,  Card } from '@material-ui/core';
+import { Grid, Input, Button, FormControl, FormLabel, Typography, styled,  Card } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const TypographyStyled = styled(Typography)({
@@ -20,7 +21,6 @@ const LoginContent = ({
     handleSubmit,
     handleUserNameChange,
     handlePasswordChange,
-    changeForm
 }) => {
     return <AuthCard >
         <form onSubmit = {handleSubmit} data-testid="login-content">
@@ -28,15 +28,7 @@ const LoginContent = ({
                 <Grid item xs={12}>
                     <TypographyStyled variant="h1" component="h1" className="MuiTypography-root jss132 MuiTypography-h4 MuiTypography-alignLeft">Войти</TypographyStyled >
                     <Typography className="MuiTypography-root MuiTypography-body1 MuiTypography-alignLeft">
-                        Новый пользователь?
-                       
-                        {/* <Switch>
-                            <Route render={() => <Redirect to="/signup" />}>Зарегистрируйтесь</Route>
-                        </Switch> */}
-                        
-                        {/* <Redirect to="/signup">Зарегистрируйтесь</Redirect> */}
-                        <Link href="/signup" onClick={preventDefault}>Зарегистрируйтесь</Link>
-                        <Button onClick={changeForm}>Зарегистрируйтесь</Button>
+                        Новый пользователь? <Link to="/signup">Зарегистрируйтесь</Link>
                     </Typography >
                 </Grid>
             </Grid>
