@@ -10,7 +10,7 @@ import SignupContent from '../signup/SignupContent';
 //container
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { login as actionLogin } from 'dugs/user';
+import { auth, login as actionLogin } from '../../../dugs/user';
 
 
 const FullContainer = styled(Paper)({
@@ -23,7 +23,7 @@ const FullContainer = styled(Paper)({
 
 const LoginLayout = () => {
     const dispatch = useDispatch();
-    const [userName, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errorPassword, setErrorPassword] = useState('')
     const isLoggin = useSelector(store => !!store.user.isLoggin)
@@ -34,7 +34,7 @@ const LoginLayout = () => {
         }
     }, [isLoggin])
 
-    const [active, toggle] = useState(false)
+    const [active] = useState(false)
     const {login} = useContext(Context);
     const getBgStyle = useMemo(() => {
         return css.main__bg;
@@ -44,18 +44,18 @@ const LoginLayout = () => {
 
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
-        const result = login({email: userName, password});
-        dispatch(actionLogin({email: userName, password}));
+        const result = login({email: email, password});
+        dispatch(actionLogin({email: email, password}));
         if (!result) {
             history.replace('/map')
         } else {
             setErrorPassword(result.error)
         }
 
-    }, [userName, password])
+    }, [email, password])
 
-    const handleUserNameChange = useCallback((e) => {
-        setUsername(e.target.value);
+    const handleEmailChange = useCallback((e) => {
+        setEmail(e.target.value);
     }, [])
 
     const handlePasswordChange = useCallback(event => {
@@ -69,14 +69,14 @@ const LoginLayout = () => {
              </Grid>
              <Grid item xs={3}>
                  {!active ? <LoginContent
-                     userName={userName}
+                     email={email}
                      password={password}
                      errorPassword={errorPassword}
                      login={login}
                      getBgStyle={getBgStyle}
                      preventDefault={preventDefault}
                      handleSubmit={handleSubmit}
-                     handleUserNameChange={handleUserNameChange}
+                     handleEmailChange={handleEmailChange}
                      handlePasswordChange={handlePasswordChange}
                  /> : <SignupContent/>}
              </Grid>
@@ -85,7 +85,7 @@ const LoginLayout = () => {
 }
 
 LoginLayout.prototype = {
-    userName: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
     changeForm: PropTypes.func,
     password: PropTypes.string.isRequired,
     errorPassword: PropTypes.object,
@@ -93,7 +93,7 @@ LoginLayout.prototype = {
     getBgStyle: PropTypes.func,
     preventDefault: PropTypes.func,
     handleSubmit: PropTypes.func,
-    handleUserNameChange: PropTypes.func,
+    handleEmailChange: PropTypes.func,
     handlePasswordChange: PropTypes.func
 }
 

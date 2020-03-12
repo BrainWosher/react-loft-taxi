@@ -1,26 +1,33 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 // import { composeWithDevTools } from 'redux-devtools-extension';
-import { createStore,compose, applyMiddleware } from 'redux'
-import logger from 'redux-logger'
+import { createStore,compose, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 
 import rootReducer from './store/store'
-import {userMiddleware} from './dugs/user'
+import {userMiddleware, auth } from './dugs/user'
 import Main from './components/Main';
 import './App.css';
+import { signupMiddleware } from './dugs/signup';
+import { profileMiddleware } from './dugs/profile';
 
 // const composeEnhancers = composeWithDevTools({ trace: true, traceLimit: 25 });
 const store = createStore(
   rootReducer, 
   compose(
     applyMiddleware(
+      // auth,
       userMiddleware,
+      signupMiddleware,
+      profileMiddleware,
+      // thunk,
       logger
     )
   ),
   // composeEnhancers()
 );
-// window.store = store;
+window.store = store;
 function App() {
   return (
     <div className="App" data-testid={'app-component'} >

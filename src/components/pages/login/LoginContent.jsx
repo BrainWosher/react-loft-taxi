@@ -14,12 +14,12 @@ const AuthCard = styled(Card)({
 });
 
 const LoginContent = ({
-    userName,
+    email,
     password,
     errorPassword,
     preventDefault,
     handleSubmit,
-    handleUserNameChange,
+    handleEmailChange,
     handlePasswordChange,
 }) => {
     return <AuthCard >
@@ -41,8 +41,8 @@ const LoginContent = ({
                         type="text"
                         name="username"
                         placeholder="Имя пользователя*"
-                        value = {userName}
-                        onChange = {handleUserNameChange}
+                        value = {email}
+                        onChange = {handleEmailChange}
                     />
                 </FormControl>
             </Grid>
@@ -71,12 +71,12 @@ const LoginContent = ({
 }
 
 LoginContent.prototype = {
-    userName: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
     errorPassword: PropTypes.func,
     preventDefault: PropTypes.func,
     handleSubmit: PropTypes.func,
-    handleUserNameChange: PropTypes.func,
+    handleEmailChange: PropTypes.func,
     handlePasswordChange: PropTypes.func,
     changeForm: PropTypes.func
 }

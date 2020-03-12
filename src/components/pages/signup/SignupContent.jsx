@@ -34,17 +34,17 @@ const ButtonStyled = styled(Button)({
 });
 
 const SignupContent = ({
-    userName,
+    name,
     password,
     email,
-    userSurname,
+    surname,
     errorPassword,
     preventDefault,
     handleSubmit,
-    handleUserNameChange,
+    handleNameChange,
     handlePasswordChange,
     handleEmailChange,
-    handleUserSurnameChange,
+    handleSurnameChange,
 }) => {
     return <Paper root elevation1 rounded outlined data-testid={'signup-content'}>
         <form onSubmit = {handleSubmit}>
@@ -71,10 +71,10 @@ const SignupContent = ({
                     <FormControlStyled className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth">
                         <Input 
                             type="text"
-                            name="username"
+                            name="name"
                             placeholder="Имя*"
-                            value = {userName}
-                            onChange = {handleUserNameChange}
+                            value = {name}
+                            onChange = {handleNameChange}
                             required
                         />
                     </FormControlStyled>
@@ -83,10 +83,10 @@ const SignupContent = ({
                     <FormControlStyled className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth">
                         <Input
                             type="text"
-                            name="userSurname"
+                            name="surname"
                             placeholder="Фамилия*"
-                            value = {userSurname}
-                            onChange = {handleUserSurnameChange}
+                            value = {surname}
+                            onChange = {handleSurnameChange}
                             required
                         />
                     </FormControlStyled>
@@ -112,17 +112,17 @@ const SignupContent = ({
 }
 
 SignupContent.prototype = {
-    userName: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
-    userSurname: PropTypes.string.isRequired,
+    surname: PropTypes.string.isRequired,
     errorPassword: PropTypes.func,
     preventDefault: PropTypes.func,
     handleSubmit: PropTypes.func,
-    handleUserNameChange: PropTypes.func,
+    handleNameChange: PropTypes.func,
     handlePasswordChange: PropTypes.func,
     handleEmailChange: PropTypes.func,
-    handleUserSurnameChange: PropTypes.func,
+    handleSurnameChange: PropTypes.func,
     changeForm: PropTypes.func
 }
 

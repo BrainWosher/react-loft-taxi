@@ -26,14 +26,14 @@ class Header extends PureComponent {
   }
 
   logout = () => {
-    const { changePage, logout }= this.props;
+    const { changePage, logout } = this.props;
+    localStorage.clear('user');
     changePage('login');
     logout();
-    localStorage.clear();
   }
 
   render() {
-    const { changePage, routes, activePage, isLoggedIn, email} = this.props;
+    const { changePage, routes, activePage, isLoggedIn} = this.props;
     if (!isLoggedIn) return null;
 
     return (
@@ -69,7 +69,6 @@ Header.propTypes = {
   routes: PropTypes.array,
   activePage: PropTypes.string, 
   isLoggedIn: PropTypes.bool, 
-  email: PropTypes.object
 }
 
 export default Header;

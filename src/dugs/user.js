@@ -15,6 +15,9 @@ const user = (state = initialState, action) => {
             ...state,
             isLogged: action.payload
         }
+        case 'SET_LOGOUT': {
+            return initialState
+        }
         default:
             return state
     }
@@ -35,8 +38,34 @@ export const logout = () => ({
     payload: false
 })
 
+// export const auth = (req) => async dispatch => {
+//   try {
+//     const body = JSON.stringify({
+//       "email": req.email, //'test5@test.com',///
+//       "password": req.password // '000000',//
+//     });
+//     const result = await fetch('https://loft-taxi.glitch.me/auth',
+//       {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json'
+//         },
+//         body
+//       }
+//     ).then(res => res.json());
+
+//     const data = {token: result.token, email: req.email};
+
+//     store.dispatch(loginOk(data));
+//     localStorage.setItem('user', JSON.stringify(data))
+//   } catch (e) {
+//     throw new Error(e);
+//   }
+// }
+
 export const userMiddleware = store => next =>async action => {
-    if (!Object.keys(ACTION).includes(action.type)) {
+    console.log('userMiddleware', action);
+    if (!Object.keys(ACTION).filter(key => key !== 'SET_LOGOUT').includes(action.type)) {
         return next(action);
     }
 
@@ -56,7 +85,10 @@ export const userMiddleware = store => next =>async action => {
             }
         ).then(res => res.json());
         console.log(result);
-        const data = {token: result.token, email: action.payload.email};
+        const data = {
+            token: result.token,
+            email: action.payload.email
+        };
         store.dispatch(loginOk(data));
         localStorage.setItem('user',JSON.stringify(data));
     } catch (e) {

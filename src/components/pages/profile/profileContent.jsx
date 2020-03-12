@@ -31,13 +31,13 @@ const ButtonStyled = styled(Button)({
 
 const ProfileContent = ({
     cardNumber,
-    validThru,
-    nameOwner,
+    expiryDate,
+    cardName,
     cvc,
     handleSubmit,
     handleCardNumberChange,
-    handleValidThruChange,
-    handleNameOwnerChange,
+    handleExpiryDateChange,
+    handleCardNameChange,
     handleCvcChange
 }) => {
     return( 
@@ -51,7 +51,7 @@ const ProfileContent = ({
                             <GridStyled elevation={3}>
                                 <span></span>
                                 <FormControlStyled fullWidth>
-                                    <InputLabel required shrink animated="true">
+                                    <InputLabel required shrink animated>
                                         Номер карты:
                                     </InputLabel>
                                     <Input
@@ -65,17 +65,17 @@ const ProfileContent = ({
                                     />
                                 </FormControlStyled>
                                 <FormControl fullWidth format="MM/yy">
-                                    <InputLabel required shrink animated="true">
+                                    <InputLabel required shrink animated>
                                         Срок действия:
                                     </InputLabel>
                                     <Input
                                         type="text"
-                                        name="validThru"
+                                        name="expiryDate"
                                         className=""
                                         placeholder="02/20"
-                                        value = {validThru}
+                                        value = {expiryDate}
                                         required
-                                        onChange = {handleValidThruChange}
+                                        onChange = {handleExpiryDateChange}
                                     />
                                 </FormControl>
                             </GridStyled>
@@ -83,20 +83,20 @@ const ProfileContent = ({
                         <Grid item xs={6}>
                             <GridStyled elevation={3}>
                                 <FormControlStyled fullWidth>
-                                    <InputLabel required shrink animated="true">
+                                    <InputLabel required shrink animated>
                                         Имя владельца:
                                     </InputLabel>
                                     <Input
                                         type="text"
-                                        name="nameOwner"
+                                        name="cardName"
                                         className=""
                                         placeholder="USER NAME"
-                                        value = {nameOwner}
-                                        onChange = {handleNameOwnerChange}
+                                        value = {cardName}
+                                        onChange = {handleCardNameChange}
                                     />
                                 </FormControlStyled>
                                 <FormControl fullWidth>
-                                    <InputLabel required shrink animated="true">
+                                    <InputLabel required shrink animated>
                                         CVC:
                                     </InputLabel>
                                     <Input
@@ -122,12 +122,12 @@ const ProfileContent = ({
 
 ProfileContent.prototype = {
     cardNumber: PropTypes.number.isRequired,
-    validThru: PropTypes.number.isRequired,
-    nameOwner: PropTypes.string.isRequired,
+    expiryDate: PropTypes.number.isRequired,
+    cardName: PropTypes.string.isRequired,
     cvc: PropTypes.number.isRequired,
     handleCardNumberChange: PropTypes.func,
-    handleValidThruChange: PropTypes.func,
-    handleNameOwnerChange: PropTypes.func,
+    handleExpiryDateChange: PropTypes.func,
+    handleCardNameChange: PropTypes.func,
     handleCvcChange: PropTypes.func
 }
 

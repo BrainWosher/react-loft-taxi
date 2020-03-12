@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import { BrowserRouter } from 'react-router-dom';
+import { Route, Redirect, Switch } from "react-router-dom";
+import { connect } from 'react-redux';
+
 import './../App.css';
 import Header from './header/Header';
 import Login from './pages/login/Login';
@@ -9,8 +13,7 @@ import Signup from './../components/pages/signup/Signup';
 import PrivateRoute from './../components/common/PrivateRoute';
 import routes from '../routes/index';
 import { AuthProvider, authHOC } from '../Context/context';
-import { BrowserRouter } from 'react-router-dom';
-import { Route, Redirect, Switch } from "react-router-dom";
+import { logout } from '../dugs/user';
 
 const getComponents = {
   profile: Profile,
@@ -46,7 +49,7 @@ class Main extends Component {
         <div>
             <BrowserRouter>
                 <AuthProvider>
-                    <HeaderComponent changePage = {this.changePage} routes= {routes} activePage = {active}/>
+                    <HeaderComponent changePage = {this.changePage} routes= {routes} activePage = {active} isLoggedIn={this.props.isAuth} logout={this.props.logout}/>
                     <Switch>
                         <PrivateRoute
                             path={'/profile'}
@@ -65,11 +68,13 @@ class Main extends Component {
                             component={getComponents['signup']}
                         />
                     </Switch>
-                    <Redirect to={'login'}/>
+                    <Redirect to={this.props.isAuth ? 'map' : 'login'}/>
                 </AuthProvider>
             </BrowserRouter>
         </div>
         );
     }
 }
-export default Main;
+export default connect(store => ({
+    isAuth: store.user.isLogged
+}), {logout})(Main);
