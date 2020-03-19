@@ -13,9 +13,8 @@ import { signupMiddleware } from './dugs/signup';
 import { profileMiddleware } from './dugs/profile';
 
 // const composeEnhancers = composeWithDevTools({ trace: true, traceLimit: 25 });
-const store = createStore(
-  rootReducer, 
-  compose(
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(rootReducer,  composeEnhancers(
     applyMiddleware(
       // auth,
       userMiddleware,

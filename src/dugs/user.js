@@ -70,6 +70,12 @@ export const userMiddleware = store => next =>async action => {
     }
 
     try {
+        let status = response => {
+            if (response.status !== 200 ){
+              return Promise.reject(new Error(response.statusText))
+            }
+            return Promise.resolve(response);
+        };
         const body = JSON.stringify({
             "email": action.payload.email, //"test5@test.com"
             "password": action.payload.password //"000000"
@@ -83,7 +89,8 @@ export const userMiddleware = store => next =>async action => {
                 },
                 body
             }
-        ).then(res => res.json());
+        ).then(status)
+        .then(res => res.json());
         console.log(result);
         const data = {
             token: result.token,
@@ -92,7 +99,7 @@ export const userMiddleware = store => next =>async action => {
         store.dispatch(loginOk(data));
         localStorage.setItem('user',JSON.stringify(data));
     } catch (e) {
-        throw new Error(e);
+        console.log('error', e );
     }
     return next(action);
 }
