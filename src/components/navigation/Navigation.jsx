@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import css from './style.module.css';
 import Button from '@material-ui/core/Button';
+import {useHistory} from "react-router-dom";
 
 class Navigation extends PureComponent {
     static propTypes = {
@@ -19,12 +20,26 @@ class Navigation extends PureComponent {
     }
     render() {
         const { page } = this.props;
+
         return(
-            <Button onClick= {this.handleClick} className={this.getActiveStyle()}>
-                { page }
-            </Button>
+            <BTN 
+                handleClick={this.handleClick}
+                style={this.getActiveStyle()}
+                page={page}
+            />
         );
     }
+}
+
+const BTN = ({page, handleClick, styles}) => {
+    const history = useHistory();
+    const click = () => {
+        history.push(`/${page}`);
+        handleClick();
+    }
+    return <Button onClick= {click} className={styles}>
+        { page }
+    </Button>
 }
 
 export default Navigation;

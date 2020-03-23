@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, Input, Button, FormControl, FormLabel, Link, Typography, styled,  Card } from '@material-ui/core';
+import { Grid, Input, Button, FormControl, FormLabel, Typography, styled,  Card } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const TypographyStyled = styled(Typography)({
@@ -13,14 +14,13 @@ const AuthCard = styled(Card)({
 });
 
 const LoginContent = ({
-    userName,
+    email,
     password,
     errorPassword,
     preventDefault,
     handleSubmit,
-    handleUserNameChange,
+    handleEmailChange,
     handlePasswordChange,
-    changeForm
 }) => {
     return <AuthCard >
         <form onSubmit = {handleSubmit} data-testid="login-content">
@@ -28,9 +28,7 @@ const LoginContent = ({
                 <Grid item xs={12}>
                     <TypographyStyled variant="h1" component="h1" className="MuiTypography-root jss132 MuiTypography-h4 MuiTypography-alignLeft">Войти</TypographyStyled >
                     <Typography className="MuiTypography-root MuiTypography-body1 MuiTypography-alignLeft">
-                        Новый пользователь?
-                        <Link href="/signup" onClick={preventDefault}>Зарегистрируйтесь</Link>
-                        <Button onClick={changeForm}>Зарегистрируйтесь</Button>
+                        Новый пользователь? <Link to="/signup">Зарегистрируйтесь</Link>
                     </Typography >
                 </Grid>
             </Grid>
@@ -43,8 +41,8 @@ const LoginContent = ({
                         type="text"
                         name="username"
                         placeholder="Имя пользователя*"
-                        value = {userName}
-                        onChange = {handleUserNameChange}
+                        value = {email}
+                        onChange = {handleEmailChange}
                     />
                 </FormControl>
             </Grid>
@@ -73,12 +71,12 @@ const LoginContent = ({
 }
 
 LoginContent.prototype = {
-    userName: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
     errorPassword: PropTypes.func,
     preventDefault: PropTypes.func,
     handleSubmit: PropTypes.func,
-    handleUserNameChange: PropTypes.func,
+    handleEmailChange: PropTypes.func,
     handlePasswordChange: PropTypes.func,
     changeForm: PropTypes.func
 }

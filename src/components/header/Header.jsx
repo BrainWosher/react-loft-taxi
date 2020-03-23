@@ -1,7 +1,9 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {AppBar, Button, Toolbar, styled} from '@material-ui/core';
+import {Link} from 'react-router-dom';
 import {Logo} from 'loft-taxi-mui-theme';
+
 import Navigation from '../navigation/Navigation';
 
 const AppBarStyled = styled(AppBar)({
@@ -15,47 +17,44 @@ const ToolbarStyled = styled(Toolbar)({
   justifyContent: 'space-between'
 });
 
-class Header extends PureComponent {
-  static propTypes = {
-    changePage: PropTypes.func,
-    routes: PropTypes.array,
-    activePage: PropTypes.string, 
-    isLoggedIn: PropTypes.bool, 
-    email: PropTypes.object
-  }
+const LogoImage = () => { return <Logo display="flex" justifyContent="flex-start" />};
+
+class Header extends PureComponent {  
   static defaultProps = {
     changePage: () => {},
     routes: []
   }
 
   logout = () => {
-    const { changePage, logout }= this.props;
+    const { changePage, logout } = this.props;
+    localStorage.clear('user');
     changePage('login');
     logout();
   }
 
   render() {
-    const { changePage, routes, activePage, isLoggedIn, email } = this.props;
+    const { changePage, routes, activePage, isLoggedIn} = this.props;
     if (!isLoggedIn) return null;
 
     return (
       <div>
         <AppBarStyled position={"static"}>
           <ToolbarStyled>
-            <Logo display="flex" justifyContent="flex-start" />
-            <div>
-              {routes.filter(page => !['signup','login'].includes(page)).map(page =>
-                <Navigation
-                  key={page}
-                  page = {page}
-                  changePage={changePage}
-                  activePage = {activePage}
-                  display="flex"
-                  justifyContent="flex-end"
-                />
-              )}
+            <LogoImage/>
+              <div>
+                {routes.filter(route => !['signup','login'].includes(route.path)).map(page =>
+                  <Navigation
+                    key={page.path}
+                    page = {page.path}
+                    changePage={changePage}
+                    activePage = {activePage}
+                    link={page.path}
+                    display="flex"
+                    justifyContent="flex-end"
+                  />
+                )}
               <Button onClick={this.logout}>
-                Logout
+                <Link to="/login">Logout</Link>
               </Button>
             </div>
           </ToolbarStyled>              
@@ -63,6 +62,13 @@ class Header extends PureComponent {
       </div>
     );
   }
+}
+
+Header.propTypes = {
+  changePage: PropTypes.func,
+  routes: PropTypes.array,
+  activePage: PropTypes.string, 
+  isLoggedIn: PropTypes.bool, 
 }
 
 export default Header;

@@ -1,11 +1,17 @@
-import React, { useCallback, useContext,useMemo, useState } from 'react';
+import React, { useCallback, useContext, useMemo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 import { Paper, Grid, styled } from '@material-ui/core';
 import css from './style.module.css';
 import logo from '../../../asstets/logo.png';
 import {Context} from '../../../Context/context';
 import LoginContent from './LoginContent';
 import SignupContent from '../signup/SignupContent';
+//container
+import { useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { auth, login as actionLogin } from '../../../dugs/user';
+
 
 const FullContainer = styled(Paper)({
     height: '98vh',
@@ -15,40 +21,47 @@ const FullContainer = styled(Paper)({
     justifyContent: 'center'
 });
 
-const LoginLayout = ({
-    changePage
-}) => {
-    const [userName, setUsername] = useState('')
+const LoginLayout = () => {
+    const dispatch = useDispatch();
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errorPassword, setErrorPassword] = useState('')
+    const isLoggin = useSelector(store => !!store.user.isLoggin)
 
-    const [active, toggle] = useState(false)
+    useEffect(()=> {
+        if (isLoggin) {
+            history.replace('/map');
+        }
+    }, [isLoggin])
+
+    const [active] = useState(false)
     const {login} = useContext(Context);
     const getBgStyle = useMemo(() => {
         return css.main__bg;
     }, [])
     const preventDefault = event => event.preventDefault();
+    const history = useHistory();
+
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
-        const result = login({email: userName, password});
+        const result = login({email: email, password});
+        dispatch(actionLogin({email: email, password}));
         if (!result) {
-            changePage('map')
+            history.replace('/map')
         } else {
             setErrorPassword(result.error)
         }
 
-    }, [userName, password])
+    }, [email, password])
 
-    const handleUserNameChange = useCallback((e) => {
-        setUsername(e.target.value);
+    const handleEmailChange = useCallback((e) => {
+        setEmail(e.target.value);
     }, [])
 
     const handlePasswordChange = useCallback(event => {
         setPassword(event.target.value);
     }, [])
-    const changeToggle = useCallback(() => {
-        toggle(state => !state)
-    }, [])
+    
     return (
         <FullContainer className={getBgStyle} data-testid="login-layout">
              <Grid item xs={3}>
@@ -56,24 +69,23 @@ const LoginLayout = ({
              </Grid>
              <Grid item xs={3}>
                  {!active ? <LoginContent
-                     userName={userName}
-                     changeForm={changeToggle}
+                     email={email}
                      password={password}
                      errorPassword={errorPassword}
                      login={login}
                      getBgStyle={getBgStyle}
                      preventDefault={preventDefault}
                      handleSubmit={handleSubmit}
-                     handleUserNameChange={handleUserNameChange}
+                     handleEmailChange={handleEmailChange}
                      handlePasswordChange={handlePasswordChange}
-                 /> : <SignupContent changeForm={changeToggle} />}
+                 /> : <SignupContent/>}
              </Grid>
          </FullContainer>
     );
 }
 
 LoginLayout.prototype = {
-    userName: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
     changeForm: PropTypes.func,
     password: PropTypes.string.isRequired,
     errorPassword: PropTypes.object,
@@ -81,7 +93,7 @@ LoginLayout.prototype = {
     getBgStyle: PropTypes.func,
     preventDefault: PropTypes.func,
     handleSubmit: PropTypes.func,
-    handleUserNameChange: PropTypes.func,
+    handleEmailChange: PropTypes.func,
     handlePasswordChange: PropTypes.func
 }
 

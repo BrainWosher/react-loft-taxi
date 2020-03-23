@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Paper, Grid, Input, Button, FormControl, Link, Typography, styled } from '@material-ui/core';
+import { Paper, Grid, Input, Button, FormControl, Typography, styled } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 
 const TypographyStyled = styled(Typography)({
@@ -33,18 +34,17 @@ const ButtonStyled = styled(Button)({
 });
 
 const SignupContent = ({
-    userName,
+    name,
     password,
     email,
-    userSurname,
+    surname,
     errorPassword,
     preventDefault,
     handleSubmit,
-    handleUserNameChange,
+    handleNameChange,
     handlePasswordChange,
     handleEmailChange,
-    handleUserSurnameChange,
-    changeForm
+    handleSurnameChange,
 }) => {
     return <Paper root elevation1 rounded outlined data-testid={'signup-content'}>
         <form onSubmit = {handleSubmit}>
@@ -52,9 +52,7 @@ const SignupContent = ({
                 <Grid item xs={12}>
                     <TypographyStyled variant="h1" component="h1" className="MuiTypography-root jss132 MuiTypography-h4 MuiTypography-alignLeft">Войти</TypographyStyled >
                     <Typography className="MuiTypography-root MuiTypography-body1 MuiTypography-alignLeft">
-                        Уже зарегистрированы? 
-                        <Link href="/login" onClick={preventDefault}>Войти</Link>
-                        <Button onClick={changeForm}>Войти</Button>
+                        Уже зарегистрированы? <Link to="/login">Войти</Link>
                     </Typography >
                 </Grid>
                 <Grid item xs={12}>
@@ -73,10 +71,10 @@ const SignupContent = ({
                     <FormControlStyled className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth">
                         <Input 
                             type="text"
-                            name="username"
+                            name="name"
                             placeholder="Имя*"
-                            value = {userName}
-                            onChange = {handleUserNameChange}
+                            value = {name}
+                            onChange = {handleNameChange}
                             required
                         />
                     </FormControlStyled>
@@ -85,10 +83,10 @@ const SignupContent = ({
                     <FormControlStyled className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth">
                         <Input
                             type="text"
-                            name="userSurname"
+                            name="surname"
                             placeholder="Фамилия*"
-                            value = {userSurname}
-                            onChange = {handleUserSurnameChange}
+                            value = {surname}
+                            onChange = {handleSurnameChange}
                             required
                         />
                     </FormControlStyled>
@@ -106,7 +104,7 @@ const SignupContent = ({
                     </FormControl>
                 </Grid>
                 <Grid item xs={12}>
-                    <ButtonStyled type="submit" data-testid="signup-submit">Зарегистрироваться</ButtonStyled>
+                    <ButtonStyled type="submit" data-testid="signup-submit">Войти</ButtonStyled>
                 </Grid>
             </GridGapStyled>
         </form>
@@ -114,17 +112,17 @@ const SignupContent = ({
 }
 
 SignupContent.prototype = {
-    userName: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
-    userSurname: PropTypes.string.isRequired,
+    surname: PropTypes.string.isRequired,
     errorPassword: PropTypes.func,
     preventDefault: PropTypes.func,
     handleSubmit: PropTypes.func,
-    handleUserNameChange: PropTypes.func,
+    handleNameChange: PropTypes.func,
     handlePasswordChange: PropTypes.func,
     handleEmailChange: PropTypes.func,
-    handleUserSurnameChange: PropTypes.func,
+    handleSurnameChange: PropTypes.func,
     changeForm: PropTypes.func
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render , getByText} from '@testing-library/react';
+import { render} from '@testing-library/react';
 import SignupLayout from './Signup';
 
 describe('Тест компонента Signup', () => {

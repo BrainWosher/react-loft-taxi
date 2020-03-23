@@ -1,11 +1,13 @@
-import React, { useCallback, useContext,useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Paper, Grid, styled } from '@material-ui/core';
+
 import SignupContent from './SignupContent';
 import LoginContent from '../login/LoginContent';
-import {Context} from '../../../Context/context';
 import css from './style.module.css';
 import logo from '../../../asstets/logo.png';
+import { useDispatch } from 'react-redux';
+import { registration } from '../../../dugs/signup'
 
 const FullContainer = styled(Paper)({
     height: '98vh',
@@ -15,17 +17,15 @@ const FullContainer = styled(Paper)({
     justifyContent: 'center'
 });
 
-const SignupLayout = ({
-    changePage
-}) => {
-    const [userName, setUsername] = useState('');
-    const [userSurname, setUserSurname] = useState('');
+const SignupLayout = () => {
+    const dispatch = useDispatch();
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [errorPassword, setErrorPassword] = useState('');
 
     const [active, toggle] = useState(false);
-    const {login} = useContext(Context);
     const getBgStyle = useMemo(() => {
         return css.main__bg;
     }, [])
@@ -33,21 +33,16 @@ const SignupLayout = ({
     const preventDefault = event => event.preventDefault();
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
-        const result = login({email: userName, password});
-        if (!result) {
-            changePage('map')
-        } else {
-            setErrorPassword(result.error)
-        }
+        dispatch(registration({email: email, password, name,
+surname}))
+    }, [email, password, name, surname])
 
-    }, [userName, password])
-
-    const handleUserNameChange = useCallback((e) => {
-        setUsername(e.target.value);
+    const handleNameChange = useCallback((e) => {
+        setName(e.target.value);
     }, [])
 
-    const handleUserSurnameChange = useCallback((e) => {
-        setUserSurname(e.target.value);
+    const handleSurnameChange = useCallback((e) => {
+        setSurname(e.target.value);
     }, [])
 
     const handlePasswordChange = useCallback(event => {
@@ -69,28 +64,27 @@ const SignupLayout = ({
             </Grid>
             <Grid item xs={3}>
                 {!active ? <SignupContent
-                    userName={userName}
-                    userSurname={userSurname}
+                    name={name}
+                    surname={surname}
                     changeForm={changeToggle}
                     password={password}
                     email={email}
                     errorPassword={errorPassword}
-                    login={login}
                     getBgStyle={getBgStyle}
                     preventDefault={preventDefault}
                     handleSubmit={handleSubmit}
-                    handleUserNameChange={handleUserNameChange}
-                    handleUserSurnameChange={handleUserSurnameChange}
+                    handleNameChange={handleNameChange}
+                    handleSurnameChange={handleSurnameChange}
                     handlePasswordChange={handlePasswordChange}
                     handleEmailChange={handleEmailChange}
-                /> : <LoginContent />}
+                /> : <LoginContent changeForm={changeToggle}/>}
             </Grid>
         </FullContainer>
     )
 }
 SignupLayout.prototype = {
-    userName: PropTypes.string.isRequired,
-    userSurname: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    surname: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
     changeForm: PropTypes.func,
@@ -99,8 +93,8 @@ SignupLayout.prototype = {
     getBgStyle: PropTypes.func,
     preventDefault: PropTypes.func,
     handleSubmit: PropTypes.func,
-    handleUserNameChange: PropTypes.func,
-    handleUserSurnameChange: PropTypes.func,
+    handleNameChange: PropTypes.func,
+    handleSurnameChange: PropTypes.func,
     handlePasswordChange: PropTypes.func,
     handleEmailChange: PropTypes.func
 }
