@@ -47,7 +47,6 @@ export const addedFalse = () => ({
 })
 
 export const profileMiddleware = store => next => async action => {
-  console.log('profileMiddleware', action);
   if (action && action.type !== ACTION.SET_PROFILE_REQUEST) {
     return next(action);
   }

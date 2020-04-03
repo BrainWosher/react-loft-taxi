@@ -7,7 +7,7 @@ import LoginContent from '../login/LoginContent';
 import css from './style.module.css';
 import logo from '../../../asstets/logo.png';
 import { useDispatch } from 'react-redux';
-import { registration } from '../../../dugs/signup'
+import { onRegistration } from '../../../dugs/user'
 
 const FullContainer = styled(Paper)({
     height: '98vh',
@@ -33,8 +33,8 @@ const SignupLayout = () => {
     const preventDefault = event => event.preventDefault();
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
-        dispatch(registration({email: email, password, name,
-surname}))
+        dispatch(onRegistration({
+            email: email, password, name, surname}))
     }, [email, password, name, surname])
 
     const handleNameChange = useCallback((e) => {
