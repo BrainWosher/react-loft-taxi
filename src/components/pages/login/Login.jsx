@@ -1,16 +1,15 @@
-import React, { useCallback, useContext, useMemo, useState, useEffect } from 'react';
+import React, { useCallback, useMemo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { Paper, Grid, styled } from '@material-ui/core';
 import css from './style.module.css';
 import logo from '../../../asstets/logo.png';
-import {Context} from '../../../Context/context';
 import LoginContent from './LoginContent';
 import SignupContent from '../signup/SignupContent';
 //container
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { auth, login as actionLogin } from '../../../dugs/user';
+import { login as actionLogin } from '../../../dugs/user';
 
 
 const FullContainer = styled(Paper)({
@@ -35,7 +34,6 @@ const LoginLayout = () => {
     }, [isLoggin])
 
     const [active] = useState(false)
-    const {login} = useContext(Context);
     const getBgStyle = useMemo(() => {
         return css.main__bg;
     }, [])
@@ -44,14 +42,11 @@ const LoginLayout = () => {
 
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
-        const result = login({email: email, password});
-        dispatch(actionLogin({email: email, password}));
-        if (!result) {
-            history.replace('/map')
-        } else {
-            setErrorPassword(result.error)
+        if (password.length && email.length){
+            dispatch(actionLogin({email: email, password}));
+            return;
         }
-
+        setErrorPassword('Одно из полей пустое!');
     }, [email, password])
 
     const handleEmailChange = useCallback((e) => {
@@ -72,7 +67,6 @@ const LoginLayout = () => {
                      email={email}
                      password={password}
                      errorPassword={errorPassword}
-                     login={login}
                      getBgStyle={getBgStyle}
                      preventDefault={preventDefault}
                      handleSubmit={handleSubmit}

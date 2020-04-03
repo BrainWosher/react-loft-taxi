@@ -28,6 +28,7 @@ class Header extends PureComponent {
   logout = () => {
     const { changePage, logout } = this.props;
     localStorage.clear('user');
+    localStorage.clear('profile');
     changePage('login');
     logout();
   }

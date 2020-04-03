@@ -46,7 +46,7 @@ export const addedFalse = () => ({
   payload: false
 })
 
-export const profileMiddleware = store => next => async action => {
+export const profileMiddleware = store => next => async action => {  
   if (action && action.type !== ACTION.SET_PROFILE_REQUEST) {
     return next(action);
   }
@@ -67,7 +67,6 @@ export const profileMiddleware = store => next => async action => {
         body
       }
     ).then(res => res.json());
-    console.log(result);
     const data = {
       token: result.token,
       cardNumber: action.payload.cardNumber,

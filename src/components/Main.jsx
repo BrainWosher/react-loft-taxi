@@ -12,17 +12,14 @@ import Profile from './pages/profile/Profile';
 import Signup from './../components/pages/signup/Signup';
 import PrivateRoute from './../components/common/PrivateRoute';
 import routes from '../routes/index';
-import { AuthProvider, authHOC } from '../Context/context';
 import { logout } from '../dugs/user';
 
 const getComponents = {
   profile: Profile,
   map: Map,
   login: Login,
-  signup: authHOC(Signup)
+  signup: Signup
 }
-
-const HeaderComponent = authHOC(Header);
 
 class Main extends Component {
     static propTypes = {
@@ -48,28 +45,26 @@ class Main extends Component {
     return (
         <div>
             <BrowserRouter>
-                <AuthProvider>
-                    <HeaderComponent changePage = {this.changePage} routes= {routes} activePage = {active} isLoggedIn={this.props.isAuth} logout={this.props.logout}/>
-                    <Switch>
-                        <PrivateRoute
-                            path={'/profile'}
-                            component={getComponents['profile']}
-                        />
-                        <PrivateRoute
-                            path={'/map'}
-                            component={getComponents['map']}
-                        />
-                        <Route
-                            path={'/login'}
-                            component={getComponents['login']}
-                        />
-                        <Route
-                            path={'/signup'}
-                            component={getComponents['signup']}
-                        />
-                    </Switch>
-                    <Redirect to={this.props.isAuth ? 'map' : 'login'}/>
-                </AuthProvider>
+                <Header changePage = {this.changePage} routes= {routes} activePage = {active} isLoggedIn={this.props.isAuth} logout={this.props.logout}/>
+                <Switch>
+                    <PrivateRoute
+                        path={'/profile'}
+                        component={getComponents['profile']}
+                    />
+                    <PrivateRoute
+                        path={'/map'}
+                        component={getComponents['map']}
+                    />
+                    <Route
+                        path={'/login'}
+                        component={getComponents['login']}
+                    />
+                    <Route
+                        path={'/signup'}
+                        component={getComponents['signup']}
+                    />
+                </Switch>
+                <Redirect to={this.props.isAuth ? 'map' : 'login'}/>
             </BrowserRouter>
         </div>
         );
