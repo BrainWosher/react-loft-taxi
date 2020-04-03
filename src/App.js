@@ -14,9 +14,8 @@ import { profileMiddleware } from './dugs/profile';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer,  composeEnhancers(
     applyMiddleware(
-      // userMiddleware,
       signupMiddleware,
-      profileMiddleware,
+      // profileMiddleware,
       thunk,
       logger
     )

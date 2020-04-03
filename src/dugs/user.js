@@ -1,5 +1,13 @@
+let initialData = null;
+
+try {
+  initialData = JSON.parse(localStorage.getItem('user'));
+} catch (error) {
+  initialData = null; 
+}
+
 const initialState = {
-  isLogged: JSON.parse(localStorage.getItem('user'))
+  isLogged: initialData,
 }
 
 export const ACTION = {

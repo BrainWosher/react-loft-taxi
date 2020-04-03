@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import css from './style.module.css';
 import ProfileContent from './profileContent';
-import { add } from '../../../dugs/profile';
+import { onProfile } from '../../../dugs/profile';
 
 const FullContainer = styled(Paper)({
     height: '92vh',
@@ -28,7 +28,7 @@ const ProfileLayout = () => {
 
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
-        dispatch(add({cardNumber: cardNumber, expiryDate, cardName, cvc}))
+        dispatch(onProfile({cardNumber: cardNumber, expiryDate, cardName, cvc}))
     }, [cardNumber, expiryDate, cardName, cvc])
     const handleCardNumberChange = useCallback((e) => {
         setCardNumber(e.target.value);
