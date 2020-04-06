@@ -41,8 +41,8 @@ const LoginContent = ({
                         type="text"
                         name="username"
                         placeholder="Имя пользователя*"
-                        value = {email}
-                        onChange = {handleEmailChange}
+                        value={email}
+                        onChange={handleEmailChange}
                     />
                 </FormControl>
             </Grid>

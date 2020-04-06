@@ -2,9 +2,9 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {AppBar, Button, Toolbar, styled} from '@material-ui/core';
 import {Link} from 'react-router-dom';
-import {Logo} from 'loft-taxi-mui-theme';
 
 import Navigation from '../navigation/Navigation';
+import LogoImage from '../common/layout/LogoImage';
 
 const AppBarStyled = styled(AppBar)({
   backgroundColor: '#FFF',
@@ -17,7 +17,7 @@ const ToolbarStyled = styled(Toolbar)({
   justifyContent: 'space-between'
 });
 
-const LogoImage = () => { return <Logo display="flex" justifyContent="flex-start" />};
+
 
 class Header extends PureComponent {  
   static defaultProps = {

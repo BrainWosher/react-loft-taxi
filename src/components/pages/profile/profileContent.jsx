@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Grid, Input, Button, FormControl, InputLabel, Typography, styled,  Card } from '@material-ui/core';
 import PropTypes from 'prop-types';
+import InputMask from "react-input-mask";
 
 const TypographyStyled = styled(Typography)({
     marginBottom: '40px'
@@ -54,14 +55,14 @@ const ProfileContent = ({
                                     <InputLabel required shrink animated>
                                         Номер карты:
                                     </InputLabel>
+                                    {/* <InputMask mask="9999 9999 9999 9999" onChange={handleCardNumberChange} value={cardNumber} /> */}
                                     <Input
                                         type="text"
-                                        name="cardNumber"
-                                        className=""
+                                        name="cardNumber"                                        
                                         placeholder="0000 0000 0000 0000"
-                                        value = {cardNumber}
+                                        value={cardNumber}
                                         required
-                                        onChange = {handleCardNumberChange}
+                                        onChange={handleCardNumberChange}
                                     />
                                 </FormControlStyled>
                                 <FormControl fullWidth format="MM/yy">
@@ -69,13 +70,12 @@ const ProfileContent = ({
                                         Срок действия:
                                     </InputLabel>
                                     <Input
-                                        type="text"
-                                        name="expiryDate"
-                                        className=""
+                                        type="date"
+                                        name="expiryDate"                                        
                                         placeholder="02/20"
-                                        value = {expiryDate}
+                                        value={expiryDate}
                                         required
-                                        onChange = {handleExpiryDateChange}
+                                        onChange={handleExpiryDateChange}
                                     />
                                 </FormControl>
                             </GridStyled>
@@ -88,11 +88,11 @@ const ProfileContent = ({
                                     </InputLabel>
                                     <Input
                                         type="text"
-                                        name="cardName"
-                                        className=""
+                                        name="cardName"                                        
                                         placeholder="USER NAME"
-                                        value = {cardName}
-                                        onChange = {handleCardNameChange}
+                                        value={cardName}
+                                        required
+                                        onChange={handleCardNameChange}
                                     />
                                 </FormControlStyled>
                                 <FormControl fullWidth>
@@ -101,11 +101,11 @@ const ProfileContent = ({
                                     </InputLabel>
                                     <Input
                                         type="text"
-                                        name="cvc"
-                                        className=""
+                                        name="cvc"                                        
                                         placeholder="CVC"
-                                        value = {cvc}
-                                        onChange = {handleCvcChange}
+                                        value={cvc}
+                                        required
+                                        onChange={handleCvcChange}
                                     />
                                 </FormControl>
                             </GridStyled>
@@ -131,4 +131,4 @@ ProfileContent.prototype = {
     handleCvcChange: PropTypes.func
 }
 
-export default ProfileContent;
+export default memo(ProfileContent);

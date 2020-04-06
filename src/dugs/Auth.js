@@ -18,12 +18,12 @@ const ACTION = {
 //REDUCER
 const user = (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_LOGIN_OK':
+    case ACTION.SET_LOGIN_OK:
       return {
         ...state,
         isLogged: action.payload,
       };
-    case 'SET_LOGOUT': {
+    case ACTION.SET_LOGOUT: {
       return initialState;
     }
     default:
@@ -32,12 +32,12 @@ const user = (state = initialState, action) => {
 };
 //ACTIONS
 export const login = (authData) => ({
-  type: 'SET_LOGIN',
+  type: ACTION.SET_LOGIN,
   payload: authData,
 });
 
 export const loginOk = (authData) => ({
-  type: 'SET_LOGIN_OK',
+  type: ACTION.SET_LOGIN_OK,
   payload: !!authData,
 });
 

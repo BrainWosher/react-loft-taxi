@@ -6,7 +6,8 @@ const initialState = {
 }
 
 const ACTION = {
-  SET_REGISTRATION: 'SET_REGISTRATION'
+  SET_REGISTRATION: 'SET_REGISTRATION',
+  SET_REGISTRATION_SUCCESS: 'SET_REGISTRATION_SUCCESS'
 }
 //REDUCER
 const signup = (state = initialState, action) => {
@@ -28,7 +29,7 @@ export const registration = (regData) => ({
 })
 
 export const registrationSuccess = (regData) => ({
-  type: 'SET_REGISTRATION_SUCCESS',
+  type: ACTION.SET_REGISTRATION_SUCCESS,
   payload: !!regData
 })
 

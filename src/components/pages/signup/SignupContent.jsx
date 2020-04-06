@@ -4,6 +4,7 @@ import { Paper, Grid, Input, Button, FormControl, Typography, styled } from '@ma
 import { Link } from 'react-router-dom';
 
 
+
 const TypographyStyled = styled(Typography)({
     marginBottom: '30px'
 });
@@ -57,12 +58,13 @@ const SignupContent = ({
                 </Grid>
                 <Grid item xs={12}>
                     <FormControlStyled className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth">
+                    
                         <Input
                             type="text"
                             name="email"
                             placeholder="Адрес электронной почты *"
-                            value = {email}
-                            onChange = {handleEmailChange}
+                            value={email}
+                            onChange={handleEmailChange}
                             required
                         />
                     </FormControlStyled>
@@ -73,8 +75,8 @@ const SignupContent = ({
                             type="text"
                             name="name"
                             placeholder="Имя*"
-                            value = {name}
-                            onChange = {handleNameChange}
+                            value={name}
+                            onChange={handleNameChange}
                             required
                         />
                     </FormControlStyled>
@@ -85,20 +87,20 @@ const SignupContent = ({
                             type="text"
                             name="surname"
                             placeholder="Фамилия*"
-                            value = {surname}
-                            onChange = {handleSurnameChange}
+                            value={surname}
+                            onChange={handleSurnameChange}
                             required
                         />
                     </FormControlStyled>
                 </GridPaddingLeftStyled>
                 <Grid item xs={12}>
-                    <FormControl className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth">
+                    <FormControl className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth">                        
                         <Input
                             type="password"
                             name="password"
                             placeholder="Пароль*"
-                            value = {password}
-                            onChange = {handlePasswordChange}
+                            value={password}
+                            onChange={handlePasswordChange}
                             required
                         />
                     </FormControl>

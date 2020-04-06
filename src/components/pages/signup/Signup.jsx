@@ -1,12 +1,12 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Paper, Grid, styled } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 
 import SignupContent from './SignupContent';
 import LoginContent from '../login/LoginContent';
 import css from './style.module.css';
 import logo from '../../../asstets/logo.png';
-import { useDispatch } from 'react-redux';
 import { onRegistration } from '../../../dugs/user'
 
 const FullContainer = styled(Paper)({
