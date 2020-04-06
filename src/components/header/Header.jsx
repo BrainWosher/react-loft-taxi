@@ -1,7 +1,7 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {AppBar, Button, Toolbar, styled} from '@material-ui/core';
-import {Link} from 'react-router-dom';
+import { AppBar, Button, Toolbar, styled } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 import Navigation from '../navigation/Navigation';
 import LogoImage from '../common/layout/LogoImage';
@@ -9,21 +9,19 @@ import LogoImage from '../common/layout/LogoImage';
 const AppBarStyled = styled(AppBar)({
   backgroundColor: '#FFF',
   border: 0,
-  boxShadow: '0 1px 4px 1px rgba(0, 0, 0, 0.11)'
+  boxShadow: '0 1px 4px 1px rgba(0, 0, 0, 0.11)',
 });
 
 const ToolbarStyled = styled(Toolbar)({
   display: 'flex',
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
 });
 
-
-
-class Header extends PureComponent {  
+class Header extends PureComponent {
   static defaultProps = {
     changePage: () => {},
-    routes: []
-  }
+    routes: [],
+  };
 
   logout = () => {
     const { changePage, logout } = this.props;
@@ -31,34 +29,36 @@ class Header extends PureComponent {
     localStorage.clear('profile');
     changePage('login');
     logout();
-  }
+  };
 
   render() {
-    const { changePage, routes, activePage, isLoggedIn} = this.props;
+    const { changePage, routes, activePage, isLoggedIn } = this.props;
     if (!isLoggedIn) return null;
 
     return (
       <div>
-        <AppBarStyled position={"static"}>
+        <AppBarStyled position={'static'}>
           <ToolbarStyled>
-            <LogoImage/>
-              <div>
-                {routes.filter(route => !['signup','login'].includes(route.path)).map(page =>
+            <LogoImage />
+            <div>
+              {routes
+                .filter(route => !['signup', 'login'].includes(route.path))
+                .map(page => (
                   <Navigation
                     key={page.path}
-                    page = {page.path}
+                    page={page.path}
                     changePage={changePage}
-                    activePage = {activePage}
+                    activePage={activePage}
                     link={page.path}
                     display="flex"
                     justifyContent="flex-end"
                   />
-                )}
+                ))}
               <Button onClick={this.logout}>
                 <Link to="/login">Logout</Link>
               </Button>
             </div>
-          </ToolbarStyled>              
+          </ToolbarStyled>
         </AppBarStyled>
       </div>
     );
@@ -68,8 +68,8 @@ class Header extends PureComponent {
 Header.propTypes = {
   changePage: PropTypes.func,
   routes: PropTypes.array,
-  activePage: PropTypes.string, 
-  isLoggedIn: PropTypes.bool, 
-}
+  activePage: PropTypes.string,
+  isLoggedIn: PropTypes.bool,
+};
 
 export default Header;
