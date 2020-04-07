@@ -1,30 +1,15 @@
-import React, { useCallback, useMemo, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Paper, Grid, styled } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import css from './style.module.css';
 import logo from '../../../asstets/logo.png';
 import LoginContent from './LoginContent';
 import SignupContent from '../signup/SignupContent';
 //container
 import { login as actionLogin } from '../../../dugs/user';
-
-const styles = theme => ({
-  containerBg: {
-    backgroundSize: 'cover',
-    backgroundImage: 'url(../../../asstets/login-background.jpg)',
-  },
-});
-
-const FullContainer = styled(Paper)({
-  height: '98vh',
-  padding: 0,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-});
+import FullContainer from '../../common/layout/FullContainer';
 
 const LoginLayout = () => {
   const dispatch = useDispatch();
@@ -40,9 +25,6 @@ const LoginLayout = () => {
   }, [isLoggin]);
 
   const [active] = useState(false);
-  const getBgStyle = useMemo(() => {
-      return css.main__bg;
-  }, [])
   const preventDefault = event => event.preventDefault();
   const history = useHistory();
 
@@ -66,7 +48,7 @@ const LoginLayout = () => {
   }, []);
 
   return (
-    <FullContainer className={getBgStyle} data-testid="login-layout">
+    <FullContainer>
       <Grid item xs={3}>
         <img src={logo} alt="" />
       </Grid>
@@ -76,15 +58,11 @@ const LoginLayout = () => {
             email={email}
             password={password}
             errorPassword={errorPassword}
-            getBgStyle={getBgStyle}
             preventDefault={preventDefault}
             handleSubmit={handleSubmit}
             handleEmailChange={handleEmailChange}
             handlePasswordChange={handlePasswordChange}
-          />
-        ) : (
-          <SignupContent />
-        )}
+          />) : (<SignupContent />)}
       </Grid>
     </FullContainer>
   );
@@ -96,7 +74,6 @@ LoginLayout.prototype = {
   password: PropTypes.string.isRequired,
   errorPassword: PropTypes.object,
   login: PropTypes.func,
-  getBgStyle: PropTypes.func,
   preventDefault: PropTypes.func,
   handleSubmit: PropTypes.func,
   handleEmailChange: PropTypes.func,

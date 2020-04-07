@@ -1,19 +1,11 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback,useState } from 'react';
 import PropTypes from 'prop-types';
-import { Paper, Grid, styled } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
-import css from './style.module.css';
 import ProfileContent from './profileContent';
 import { onProfile } from '../../../dugs/profile';
-
-const FullContainer = styled(Paper)({
-  height: '92vh',
-  padding: 0,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-});
+import FullContainer from '../../common/layout/FullContainer';
 
 const ProfileLayout = () => {
   const dispatch = useDispatch();
@@ -21,10 +13,6 @@ const ProfileLayout = () => {
   const [expiryDate, setExpiryDate] = useState('');
   const [cardName, setCardName] = useState('');
   const [cvc, setCvc] = useState('');
-
-  const getBgStyle = useMemo(() => {
-    return css.main__bg;
-  }, []);
 
   const handleSubmit = useCallback(e => {
       e.preventDefault();
@@ -48,7 +36,7 @@ const ProfileLayout = () => {
   }, []);
 
   return (
-    <FullContainer elevation={1} data-testid={'page-profile'} className={getBgStyle}>
+    <FullContainer>
       <Grid item xs={6}>
         <ProfileContent
           cardNumber={cardNumber}

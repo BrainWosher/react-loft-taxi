@@ -1,21 +1,13 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Paper, Grid, styled } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
 import SignupContent from './SignupContent';
 import LoginContent from '../login/LoginContent';
-import css from './style.module.css';
 import logo from '../../../asstets/logo.png';
 import { onRegistration } from '../../../dugs/user';
-
-const FullContainer = styled(Paper)({
-  height: '98vh',
-  padding: 0,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-});
+import FullContainer from '../../common/layout/FullContainer';
 
 const SignupLayout = () => {
   const dispatch = useDispatch();
@@ -26,10 +18,6 @@ const SignupLayout = () => {
   const [errorPassword, setErrorPassword] = useState('');
 
   const [active, toggle] = useState(false);
-  const getBgStyle = useMemo(() => {
-    return css.main__bg;
-  }, []);
-
   const preventDefault = event => event.preventDefault();
   const handleSubmit = useCallback(e => {
       e.preventDefault();
@@ -65,7 +53,7 @@ const SignupLayout = () => {
   }, []);
 
   return (
-    <FullContainer className={getBgStyle} data-testid={'signup-layout'}>
+    <FullContainer>
       <Grid item xs={3}>
         <img src={logo} alt="" />
       </Grid>
@@ -78,7 +66,6 @@ const SignupLayout = () => {
             password={password}
             email={email}
             errorPassword={errorPassword}
-            getBgStyle={getBgStyle}
             preventDefault={preventDefault}
             handleSubmit={handleSubmit}
             handleNameChange={handleNameChange}
@@ -101,7 +88,6 @@ SignupLayout.prototype = {
   changeForm: PropTypes.func,
   errorPassword: PropTypes.object,
   login: PropTypes.func,
-  getBgStyle: PropTypes.func,
   preventDefault: PropTypes.func,
   handleSubmit: PropTypes.func,
   handleNameChange: PropTypes.func,
