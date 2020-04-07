@@ -52,10 +52,7 @@ class Main extends Component {
             logout={this.props.logout}
           />
           <Switch>
-            <PrivateRoute
-              path={'/profile'}
-              component={getComponents['profile']}
-            />
+            <PrivateRoute path={'/profile'} component={getComponents['profile']}/>
             <PrivateRoute path={'/map'} component={getComponents['map']} />
             <Route path={'/login'} component={getComponents['login']} />
             <Route path={'/signup'} component={getComponents['signup']} />

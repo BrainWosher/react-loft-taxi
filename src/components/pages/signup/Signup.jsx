@@ -15,20 +15,18 @@ const SignupLayout = () => {
   const [surname, setSurname] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [errorPassword, setErrorPassword] = useState('');
+  const [error, setError] = useState('');
 
   const [active, toggle] = useState(false);
   const preventDefault = event => event.preventDefault();
   const handleSubmit = useCallback(e => {
       e.preventDefault();
-      dispatch(
-        onRegistration({
-          email: email,
-          password,
-          name,
-          surname,
-        }),
-      );
+      if (name.length || surname.length || password.length || email.length) {
+        dispatch(onRegistration({email: email, password, name, surname}));
+        return;
+      }
+      setError('Одно из полей пустое!');
+     
     },[email, password, name, surname],
   );
 
@@ -65,7 +63,7 @@ const SignupLayout = () => {
             changeForm={changeToggle}
             password={password}
             email={email}
-            errorPassword={errorPassword}
+            error={error}
             preventDefault={preventDefault}
             handleSubmit={handleSubmit}
             handleNameChange={handleNameChange}

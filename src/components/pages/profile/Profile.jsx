@@ -13,12 +13,15 @@ const ProfileLayout = () => {
   const [expiryDate, setExpiryDate] = useState('');
   const [cardName, setCardName] = useState('');
   const [cvc, setCvc] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = useCallback(e => {
       e.preventDefault();
-      dispatch(
-        onProfile({ cardNumber: cardNumber, expiryDate, cardName, cvc }),
-      );
+      if (cardNumber.length || expiryDate.length || cardName.length || cvc.length) {
+        dispatch(onProfile({ cardNumber: cardNumber, expiryDate, cardName, cvc }));
+        return;
+      }
+      setError('Одно из полей пустое!');
     },
     [cardNumber, expiryDate, cardName, cvc],
   );
@@ -48,6 +51,7 @@ const ProfileLayout = () => {
           handleExpiryDateChange={handleExpiryDateChange}
           handleCardNameChange={handleCardNameChange}
           handleCvcChange={handleCvcChange}
+          error={error}
         />
       </Grid>
     </FullContainer>
