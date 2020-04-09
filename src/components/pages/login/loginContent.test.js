@@ -34,7 +34,7 @@ describe('Тест компонента Login', () => {
 
   it('test submit button', () => {
     const { getByTestId } = render(<LoginContent {...props} />);
-    fireEvent.submit(getByTestId('login-submit'));
+    fireEvent.submit(getByTestId('submit'));
     expect(props.handleSubmit).toBeCalled();
   });
 });

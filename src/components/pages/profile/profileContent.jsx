@@ -22,11 +22,8 @@ const FormControlStyled = styled(FormControl)({
 });
 
 const ButtonStyled = styled(Button)({
-	padding: '9px 50px',
-	borderRadius: '4px',
-	backgroundColor: '#ffc617',
-	fontSize: '21px',
-	fontWeight: 400,
+	color: 'rgba(0, 0, 0, 0.87)',
+	boxShadow: 'none',
 	marginTop: '40px'
 });
 
@@ -112,7 +109,7 @@ const ProfileContent = ({
 						</Grid>
 					</Grid>
 					<Grid container justify="center" alignItems="center">
-							<ButtonStyled type="submit"  data-testid={'profile-submit'}>Сохранить</ButtonStyled>
+						<ButtonStyled type="submit" variant="contained" color="primary"  data-testid={'profile-submit'}>Сохранить</ButtonStyled>
 					</Grid>
 				</Grid>
 			</form>

@@ -24,11 +24,11 @@ const FormControlStyled = styled(FormControl)({
 });
 
 const ButtonStyled = styled(Button)({
-  padding: '9px 50px',
-  borderRadius: '4px',
-  backgroundColor: '#ffc617',
-  fontSize: '21px',
-  fontWeight: 400,
+  // padding: '9px 50px',
+  // borderRadius: '4px',
+  // backgroundColor: '#ffc617',
+  // fontSize: '21px',
+  // fontWeight: 400,
   marginTop: '40px',
 });
 
@@ -109,8 +109,8 @@ const SignupContent = ({
               />
             </FormControl>
           </Grid>
-          <Grid item xs={12}>
-            <ButtonStyled type="submit" data-testid="signup-submit">
+          <Grid item xs={12} container justify="flex-end">
+            <ButtonStyled type="submit" data-testid="signup-submit" color="primary" variant="contained">
               Войти
             </ButtonStyled>
           </Grid>

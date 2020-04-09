@@ -2,6 +2,8 @@ import React from 'react';
 import { Grid, Input, Button, FormControl, FormLabel, Typography, styled, Card} from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import MainButton from '../../common/layout/MainButton';
+import FormattedInput from '../../common/layout/MaskedInput';
 
 const TypographyStyled = styled(Typography)({
   marginBottom: '30px',
@@ -65,14 +67,7 @@ const LoginContent = ({
           </FormControl>
         </Grid>
         <Grid container item xs={12} justify="flex-end">
-          <Button
-            type="submit"
-            data-testid="login-submit"
-            color="primary"
-            variant="contained"
-          >
-            Войти
-          </Button>
+          <MainButton>Войти</MainButton>
         </Grid>
       </form>
     </AuthCard>
