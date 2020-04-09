@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import { Grid, Input, Button, FormControl, InputLabel, Typography, styled,  Card } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import InputMask from "react-input-mask";
+import FormattedInput from '../../common/layout/MaskedInput';
 
 const TypographyStyled = styled(Typography)({
 	marginBottom: '40px'
@@ -49,18 +50,19 @@ const ProfileContent = ({
 							<GridStyled elevation={3}>
 								<span></span>
 								<FormControlStyled fullWidth>
-									<InputLabel required shrink animated>
+									{/* <InputLabel required shrink animated>
 										Номер карты:
-									</InputLabel>
+									</InputLabel> */}
 									{/* <InputMask mask="9999 9999 9999 9999" onChange={handleCardNumberChange} value={cardNumber} /> */}
-									<Input
+									<FormattedInput/>
+									{/* <Input
 										type="text"
 										name="cardNumber"                                        
 										placeholder="0000 0000 0000 0000"
 										value={cardNumber}
 										required
 										onChange={handleCardNumberChange}
-									/>
+									/> */}
 								</FormControlStyled>
 								<FormControl fullWidth format="MM/yy">
 									<InputLabel required shrink animated>
