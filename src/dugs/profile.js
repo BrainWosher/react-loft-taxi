@@ -1,10 +1,10 @@
 import { ACTIONS as USER_ACTIONS } from './user';
-import { apiRoot } from '../helpers/helperFunctions';
+import { apiRoot, putInLocallStarage, takeFromLocalStorage } from '../helpers/helperFunctions';
 
 let initialData = null;
 
 try {
-  initialData = JSON.parse(localStorage.getItem('profile'));
+  initialData = takeFromLocalStorage('profile');
 } catch (error) {
   initialData = null; 
 }
@@ -96,8 +96,7 @@ export const onProfile = (profileData) => async (dispatch, globalStore) => {
     }
 
     dispatch(setProfile(data));
-
-    localStorage.setItem('profile', JSON.stringify(data));
+    putInLocallStarage('profile', data);
   } catch(error) {
     dispatch(failed(error));
   }

@@ -1,9 +1,9 @@
-import { apiRoot } from '../helpers/helperFunctions';
+import { apiRoot, putInLocallStarage, takeFromLocalStorage } from '../helpers/helperFunctions';
 
 let initialData = null;
 
 try {
-  initialData = JSON.parse(localStorage.getItem('user'));
+  initialData = takeFromLocalStorage('user');
 } catch (error) {
   initialData = null; 
 }
@@ -76,7 +76,7 @@ export const login = (authData) => async (dispatch, globalStore) => {
 
     dispatch(setLogin(data));
 
-    localStorage.setItem('user', JSON.stringify(data));
+    putInLocallStarage('user', data);
   } catch(e) {
     throw new Error(e);
   }
@@ -115,7 +115,7 @@ export const onRegistration = (dataRegistration) => async dispatch => {
 
     dispatch(setLogin(data));
 
-    localStorage.setItem('user', JSON.stringify(data));
+    putInLocallStarage('user', data);
   } catch (error) {
     throw new Error(error);
   }
