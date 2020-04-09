@@ -1,4 +1,5 @@
 import { ACTIONS as USER_ACTIONS } from './user';
+import { apiRoot } from '../helpers/helperFunctions';
 
 let initialData = null;
 
@@ -17,8 +18,6 @@ const ACTIONS = {
   SET_PROFILE_SUCCESS: 'SET_PROFILE_SUCCESS',
   SET_PROFILE_FAILED: 'SET_PROFILE_FAILED'
 }
-
-const apiRoot = 'https://loft-taxi.glitch.me';
 
 //REDUCER
 const profile = (state = initialState, action) => {

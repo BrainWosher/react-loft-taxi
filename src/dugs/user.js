@@ -1,3 +1,5 @@
+import { apiRoot } from '../helpers/helperFunctions';
+
 let initialData = null;
 
 try {
@@ -14,8 +16,6 @@ export const ACTIONS = {
   SET_LOGIN: 'SET_LOGIN',
   SET_LOGOUT: 'SET_LOGOUT'
 }
-
-const apiRoot = 'https://loft-taxi.glitch.me'; //`${apiRoot}/auth`
 
 //REDUCER
 const user = (state = initialState, action) => {
