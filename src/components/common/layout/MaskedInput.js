@@ -1,48 +1,44 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import MaskedInput from 'react-text-mask';
-import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
+import React from "react";
+import InputMask from "react-input-mask";
+import { makeStyles } from "@material-ui/core/styles";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    
-  },
+const useStyles = makeStyles(theme => ({
+  root: {}
 }));
-
 function TextMaskCustom(props) {
   const { inputRef, ...other } = props;
-
+  const handleChange = e => {
+    console.log("INPUT MASK !", e.target.value);
+    other.onChange({
+      name: e.target.name,
+      value: e.target.value
+    });
+  };
   return (
-    <MaskedInput
+    <InputMask
       {...other}
-      ref={(ref) => {
-        inputRef(ref ? ref.inputElement : null);
-      }}
-      mask={[ /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/ ]}
-      placeholderChar={'\u2000'}
+      onChange={handleChange}
+      mask={"9999 9999 9999 9999"}
+      placeholderChar={"\u2000"}
       showMask
     />
   );
 }
 
-TextMaskCustom.propTypes = {
-  inputRef: PropTypes.func.isRequired,
-};
-
-export default function FormattedInput() {
+function FormattedInput() {
   const classes = useStyles();
   const [values, setValues] = React.useState({
-    textmask: 'Enter card number',
+    textmask: "Enter card number"
   });
 
-  const handleChange = (event) => {
+  const handleChange = obj => {
+    console.log("PARENT", obj, obj.value);
     setValues({
       ...values,
-      [event.target.name]: event.target.value,
+      [obj.name]: obj.value
     });
   };
 
@@ -61,3 +57,4 @@ export default function FormattedInput() {
     </div>
   );
 }
+export default FormattedInput;

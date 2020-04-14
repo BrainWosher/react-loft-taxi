@@ -17,6 +17,10 @@ const ToolbarStyled = styled(Toolbar)({
   justifyContent: 'space-between',
 });
 
+const LinkStiled = styled(Link)({
+  textDecoration: 'none',
+})
+
 class Header extends PureComponent {
   static defaultProps = {
     changePage: () => {},
@@ -55,7 +59,7 @@ class Header extends PureComponent {
                   />
                 ))}
               <Button onClick={this.logout}>
-                <Link to="/login">Logout</Link>
+                <LinkStiled to="/login">Logout</LinkStiled>
               </Button>
             </div>
           </ToolbarStyled>

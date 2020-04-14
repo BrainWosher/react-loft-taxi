@@ -3,6 +3,7 @@ import { Grid, Input, Button, FormControl, InputLabel, Typography, styled,  Card
 import PropTypes from 'prop-types';
 import InputMask from "react-input-mask";
 import FormattedInput from '../../common/layout/MaskedInput';
+import ExpiryDate from '../../common/layout/ExpiryDate';
 
 const TypographyStyled = styled(Typography)({
 	marginBottom: '40px'
@@ -54,7 +55,7 @@ const ProfileContent = ({
 										Номер карты:
 									</InputLabel> */}
 									{/* <InputMask mask="9999 9999 9999 9999" onChange={handleCardNumberChange} value={cardNumber} /> */}
-									<FormattedInput/>
+									<FormattedInput onChange={handleCardNumberChange} cardNumber={cardNumber}/>
 									{/* <Input
 										type="text"
 										name="cardNumber"                                        
@@ -65,7 +66,7 @@ const ProfileContent = ({
 									/> */}
 								</FormControlStyled>
 								<FormControl fullWidth format="MM/yy">
-									<InputLabel required shrink animated>
+									<InputLabel required shrink >
 											Срок действия:
 									</InputLabel>
 									<Input
@@ -76,13 +77,14 @@ const ProfileContent = ({
 										required
 										onChange={handleExpiryDateChange}
 									/>
+									<ExpiryDate/>
 								</FormControl>
 							</GridStyled>
 						</Grid>
 						<Grid item xs={6}>
 							<GridStyled elevation={3}>
 								<FormControlStyled fullWidth>
-									<InputLabel required shrink animated>
+									<InputLabel required shrink >
 										Имя владельца:
 									</InputLabel>
 									<Input
@@ -95,7 +97,7 @@ const ProfileContent = ({
 									/>
 								</FormControlStyled>
 								<FormControl fullWidth>
-									<InputLabel required shrink animated>
+									<InputLabel required shrink >
 										CVC:
 									</InputLabel>
 									<Input
